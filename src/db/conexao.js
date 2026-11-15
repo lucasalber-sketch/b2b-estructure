@@ -1,6 +1,10 @@
 // Conexão com o banco: Postgres/Supabase (pg + SSL) quando há DATABASE_URL; PGlite em memória para testes.
 // Interface única: { tipo, query(sql, params) → { rows }, exec(sql), transacao(fn), fechar() }.
 import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 const log = (...a) => console.error('[db]', ...a);
 
@@ -33,7 +37,8 @@ export async function criarConexao({ url = process.env.DATABASE_URL, memoria } =
 
 function configurarSsl() {
   const caminhoCa = process.env.DATABASE_SSL_CA;
-  if (caminhoCa) return { ca: readFileSync(caminhoCa, 'utf8'), rejectUnauthorized: true };
+  // Caminho relativo é resolvido a partir da raiz do projeto (o servidor MCP pode ser iniciado de outra pasta).
+  if (caminhoCa) return { ca: readFileSync(path.resolve(RAIZ, caminhoCa), 'utf8'), rejectUnauthorized: true };
   log('aviso: DATABASE_SSL_CA não definido — conexão cifrada (TLS) mas sem verificação do certificado do servidor');
   return { rejectUnauthorized: false };
 }
