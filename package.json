@@ -1,0 +1,30 @@
+{
+  "name": "b2b-estructure",
+  "version": "0.1.0",
+  "private": true,
+  "description": "mcp-dados-brasil: conectores determinísticos de dados públicos brasileiros (IBGE, CNPJ, CEP/Geo, radar de site) via MCP stdio + persistência no Supabase/PostgreSQL (schema prospeccao).",
+  "type": "module",
+  "main": "src/mcp/server.js",
+  "bin": {
+    "mcp-dados-brasil": "src/mcp/server.js"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/mcp/server.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "test:live": "node scripts/test-live.js",
+    "db:status": "node --env-file-if-exists=.env src/cli/db-status.js",
+    "db:migrar": "node --env-file-if-exists=.env src/cli/db-migrar.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.16"
+  }
+}

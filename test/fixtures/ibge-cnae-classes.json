@@ -1,0 +1,1005 @@
+[
+ {
+  "id": "01113",
+  "descricao": "CULTIVO DE CEREAIS",
+  "grupo": {
+   "id": "011",
+   "descricao": "PRODUÇÃO DE LAVOURAS TEMPORÁRIAS",
+   "divisao": {
+    "id": "01",
+    "descricao": "AGRICULTURA, PECUÁRIA E SERVIÇOS RELACIONADOS",
+    "secao": {
+     "id": "A",
+     "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "01121",
+  "descricao": "CULTIVO DE ALGODÃO HERBÁCEO E DE OUTRAS FIBRAS DE LAVOURA TEMPORÁRIA",
+  "grupo": {
+   "id": "011",
+   "descricao": "PRODUÇÃO DE LAVOURAS TEMPORÁRIAS",
+   "divisao": {
+    "id": "01",
+    "descricao": "AGRICULTURA, PECUÁRIA E SERVIÇOS RELACIONADOS",
+    "secao": {
+     "id": "A",
+     "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "01130",
+  "descricao": "CULTIVO DE CANA-DE-AÇÚCAR",
+  "grupo": {
+   "id": "011",
+   "descricao": "PRODUÇÃO DE LAVOURAS TEMPORÁRIAS",
+   "divisao": {
+    "id": "01",
+    "descricao": "AGRICULTURA, PECUÁRIA E SERVIÇOS RELACIONADOS",
+    "secao": {
+     "id": "A",
+     "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "07243",
+  "descricao": "EXTRAÇÃO DE MINÉRIO DE METAIS PRECIOSOS",
+  "grupo": {
+   "id": "072",
+   "descricao": "EXTRAÇÃO DE MINERAIS METÁLICOS NÃO-FERROSOS",
+   "divisao": {
+    "id": "07",
+    "descricao": "EXTRAÇÃO DE MINERAIS METÁLICOS",
+    "secao": {
+     "id": "B",
+     "descricao": "INDÚSTRIAS EXTRATIVAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "10538",
+  "descricao": "FABRICAÇÃO DE SORVETES E OUTROS GELADOS COMESTÍVEIS",
+  "grupo": {
+   "id": "105",
+   "descricao": "LATICÍNIOS",
+   "divisao": {
+    "id": "10",
+    "descricao": "FABRICAÇÃO DE PRODUTOS ALIMENTÍCIOS",
+    "secao": {
+     "id": "C",
+     "descricao": "INDÚSTRIAS DE TRANSFORMAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "10619",
+  "descricao": "BENEFICIAMENTO DE ARROZ E FABRICAÇÃO DE PRODUTOS DO ARROZ",
+  "grupo": {
+   "id": "106",
+   "descricao": "MOAGEM, FABRICAÇÃO DE PRODUTOS AMILÁCEOS E DE ALIMENTOS PARA ANIMAIS",
+   "divisao": {
+    "id": "10",
+    "descricao": "FABRICAÇÃO DE PRODUTOS ALIMENTÍCIOS",
+    "secao": {
+     "id": "C",
+     "descricao": "INDÚSTRIAS DE TRANSFORMAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "05003",
+  "descricao": "EXTRAÇÃO DE CARVÃO MINERAL",
+  "grupo": {
+   "id": "050",
+   "descricao": "EXTRAÇÃO DE CARVÃO MINERAL",
+   "divisao": {
+    "id": "05",
+    "descricao": "EXTRAÇÃO DE CARVÃO MINERAL",
+    "secao": {
+     "id": "B",
+     "descricao": "INDÚSTRIAS EXTRATIVAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "06000",
+  "descricao": "EXTRAÇÃO DE PETRÓLEO E GÁS NATURAL",
+  "grupo": {
+   "id": "060",
+   "descricao": "EXTRAÇÃO DE PETRÓLEO E GÁS NATURAL",
+   "divisao": {
+    "id": "06",
+    "descricao": "EXTRAÇÃO DE PETRÓLEO E GÁS NATURAL",
+    "secao": {
+     "id": "B",
+     "descricao": "INDÚSTRIAS EXTRATIVAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "10112",
+  "descricao": "ABATE DE RESES, EXCETO SUÍNOS",
+  "grupo": {
+   "id": "101",
+   "descricao": "ABATE E FABRICAÇÃO DE PRODUTOS DE CARNE",
+   "divisao": {
+    "id": "10",
+    "descricao": "FABRICAÇÃO DE PRODUTOS ALIMENTÍCIOS",
+    "secao": {
+     "id": "C",
+     "descricao": "INDÚSTRIAS DE TRANSFORMAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "46460",
+  "descricao": "COMÉRCIO ATACADISTA DE COSMÉTICOS, PRODUTOS DE PERFUMARIA E DE HIGIENE PESSOAL",
+  "grupo": {
+   "id": "464",
+   "descricao": "COMÉRCIO ATACADISTA DE PRODUTOS DE CONSUMO NÃO-ALIMENTAR",
+   "divisao": {
+    "id": "46",
+    "descricao": "COMÉRCIO POR ATACADO, EXCETO VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+    "secao": {
+     "id": "G",
+     "descricao": "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "47571",
+  "descricao": "COMÉRCIO VAREJISTA ESPECIALIZADO DE PEÇAS E ACESSÓRIOS PARA APARELHOS ELETROELETRÔNICOS PARA USO DOMÉSTICO, EXCETO INFORMÁTICA E COMUNICAÇÃO",
+  "grupo": {
+   "id": "475",
+   "descricao": "COMÉRCIO VAREJISTA DE EQUIPAMENTOS DE INFORMÁTICA E COMUNICAÇÃO; EQUIPAMENTOS E ARTIGOS DE USO DOMÉSTICO",
+   "divisao": {
+    "id": "47",
+    "descricao": "COMÉRCIO VAREJISTA",
+    "secao": {
+     "id": "G",
+     "descricao": "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "35115",
+  "descricao": "GERAÇÃO DE ENERGIA ELÉTRICA",
+  "grupo": {
+   "id": "351",
+   "descricao": "GERAÇÃO, TRANSMISSÃO E DISTRIBUIÇÃO DE ENERGIA ELÉTRICA",
+   "divisao": {
+    "id": "35",
+    "descricao": "ELETRICIDADE, GÁS E OUTRAS UTILIDADES",
+    "secao": {
+     "id": "D",
+     "descricao": "ELETRICIDADE E GÁS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "35123",
+  "descricao": "TRANSMISSÃO DE ENERGIA ELÉTRICA",
+  "grupo": {
+   "id": "351",
+   "descricao": "GERAÇÃO, TRANSMISSÃO E DISTRIBUIÇÃO DE ENERGIA ELÉTRICA",
+   "divisao": {
+    "id": "35",
+    "descricao": "ELETRICIDADE, GÁS E OUTRAS UTILIDADES",
+    "secao": {
+     "id": "D",
+     "descricao": "ELETRICIDADE E GÁS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "35131",
+  "descricao": "COMÉRCIO ATACADISTA DE ENERGIA ELÉTRICA",
+  "grupo": {
+   "id": "351",
+   "descricao": "GERAÇÃO, TRANSMISSÃO E DISTRIBUIÇÃO DE ENERGIA ELÉTRICA",
+   "divisao": {
+    "id": "35",
+    "descricao": "ELETRICIDADE, GÁS E OUTRAS UTILIDADES",
+    "secao": {
+     "id": "D",
+     "descricao": "ELETRICIDADE E GÁS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "38211",
+  "descricao": "TRATAMENTO E DISPOSIÇÃO DE RESÍDUOS NÃO PERIGOSOS",
+  "grupo": {
+   "id": "382",
+   "descricao": "TRATAMENTO E DISPOSIÇÃO DE RESÍDUOS",
+   "divisao": {
+    "id": "38",
+    "descricao": "COLETA, TRATAMENTO E DISPOSIÇÃO DE RESÍDUOS; RECUPERAÇÃO DE MATERIAIS",
+    "secao": {
+     "id": "E",
+     "descricao": "ÁGUA, ESGOTO, ATIVIDADES DE GESTÃO DE RESÍDUOS E DESCONTAMINAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "50220",
+  "descricao": "TRANSPORTE POR NAVEGAÇÃO INTERIOR DE PASSAGEIROS EM LINHAS REGULARES",
+  "grupo": {
+   "id": "502",
+   "descricao": "TRANSPORTE POR NAVEGAÇÃO INTERIOR",
+   "divisao": {
+    "id": "50",
+    "descricao": "TRANSPORTE AQUAVIÁRIO",
+    "secao": {
+     "id": "H",
+     "descricao": "TRANSPORTE, ARMAZENAGEM E CORREIO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "36006",
+  "descricao": "CAPTAÇÃO, TRATAMENTO E DISTRIBUIÇÃO DE ÁGUA",
+  "grupo": {
+   "id": "360",
+   "descricao": "CAPTAÇÃO, TRATAMENTO E DISTRIBUIÇÃO DE ÁGUA",
+   "divisao": {
+    "id": "36",
+    "descricao": "CAPTAÇÃO, TRATAMENTO E DISTRIBUIÇÃO DE ÁGUA",
+    "secao": {
+     "id": "E",
+     "descricao": "ÁGUA, ESGOTO, ATIVIDADES DE GESTÃO DE RESÍDUOS E DESCONTAMINAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "37011",
+  "descricao": "GESTÃO DE REDES DE ESGOTO",
+  "grupo": {
+   "id": "370",
+   "descricao": "ESGOTO E ATIVIDADES RELACIONADAS",
+   "divisao": {
+    "id": "37",
+    "descricao": "ESGOTO E ATIVIDADES RELACIONADAS",
+    "secao": {
+     "id": "E",
+     "descricao": "ÁGUA, ESGOTO, ATIVIDADES DE GESTÃO DE RESÍDUOS E DESCONTAMINAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "58212",
+  "descricao": "EDIÇÃO INTEGRADA À IMPRESSÃO DE LIVROS",
+  "grupo": {
+   "id": "582",
+   "descricao": "EDIÇÃO INTEGRADA À IMPRESSÃO DE LIVROS, JORNAIS, REVISTAS E OUTRAS PUBLICAÇÕES",
+   "divisao": {
+    "id": "58",
+    "descricao": "EDIÇÃO E EDIÇÃO INTEGRADA À IMPRESSÃO",
+    "secao": {
+     "id": "J",
+     "descricao": "INFORMAÇÃO E COMUNICAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "41107",
+  "descricao": "INCORPORAÇÃO DE EMPREENDIMENTOS IMOBILIÁRIOS",
+  "grupo": {
+   "id": "411",
+   "descricao": "INCORPORAÇÃO DE EMPREENDIMENTOS IMOBILIÁRIOS",
+   "divisao": {
+    "id": "41",
+    "descricao": "CONSTRUÇÃO DE EDIFÍCIOS",
+    "secao": {
+     "id": "F",
+     "descricao": "CONSTRUÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "42235",
+  "descricao": "CONSTRUÇÃO DE REDES DE TRANSPORTES POR DUTOS, EXCETO PARA ÁGUA E ESGOTO",
+  "grupo": {
+   "id": "422",
+   "descricao": "OBRAS DE INFRA-ESTRUTURA PARA ENERGIA ELÉTRICA, TELECOMUNICAÇÕES, ÁGUA, ESGOTO E TRANSPORTE POR DUTOS",
+   "divisao": {
+    "id": "42",
+    "descricao": "OBRAS DE INFRA-ESTRUTURA",
+    "secao": {
+     "id": "F",
+     "descricao": "CONSTRUÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "58221",
+  "descricao": "EDIÇÃO INTEGRADA À IMPRESSÃO DE JORNAIS",
+  "grupo": {
+   "id": "582",
+   "descricao": "EDIÇÃO INTEGRADA À IMPRESSÃO DE LIVROS, JORNAIS, REVISTAS E OUTRAS PUBLICAÇÕES",
+   "divisao": {
+    "id": "58",
+    "descricao": "EDIÇÃO E EDIÇÃO INTEGRADA À IMPRESSÃO",
+    "secao": {
+     "id": "J",
+     "descricao": "INFORMAÇÃO E COMUNICAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "41204",
+  "descricao": "CONSTRUÇÃO DE EDIFÍCIOS",
+  "grupo": {
+   "id": "412",
+   "descricao": "CONSTRUÇÃO DE EDIFÍCIOS",
+   "divisao": {
+    "id": "41",
+    "descricao": "CONSTRUÇÃO DE EDIFÍCIOS",
+    "secao": {
+     "id": "F",
+     "descricao": "CONSTRUÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "47229",
+  "descricao": "COMÉRCIO VAREJISTA DE CARNES E PESCADOS - AÇOUGUES E PEIXARIAS",
+  "grupo": {
+   "id": "472",
+   "descricao": "COMÉRCIO VAREJISTA DE PRODUTOS ALIMENTÍCIOS, BEBIDAS E FUMO",
+   "divisao": {
+    "id": "47",
+    "descricao": "COMÉRCIO VAREJISTA",
+    "secao": {
+     "id": "G",
+     "descricao": "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "58239",
+  "descricao": "EDIÇÃO INTEGRADA À IMPRESSÃO DE REVISTAS",
+  "grupo": {
+   "id": "582",
+   "descricao": "EDIÇÃO INTEGRADA À IMPRESSÃO DE LIVROS, JORNAIS, REVISTAS E OUTRAS PUBLICAÇÕES",
+   "divisao": {
+    "id": "58",
+    "descricao": "EDIÇÃO E EDIÇÃO INTEGRADA À IMPRESSÃO",
+    "secao": {
+     "id": "J",
+     "descricao": "INFORMAÇÃO E COMUNICAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "86909",
+  "descricao": "ATIVIDADES DE ATENÇÃO À SAÚDE HUMANA NÃO ESPECIFICADAS ANTERIORMENTE",
+  "grupo": {
+   "id": "869",
+   "descricao": "ATIVIDADES DE ATENÇÃO À SAÚDE HUMANA NÃO ESPECIFICADAS ANTERIORMENTE",
+   "divisao": {
+    "id": "86",
+    "descricao": "ATIVIDADES DE ATENÇÃO À SAÚDE HUMANA",
+    "secao": {
+     "id": "Q",
+     "descricao": "SAÚDE HUMANA E SERVIÇOS SOCIAIS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "50114",
+  "descricao": "TRANSPORTE MARÍTIMO DE CABOTAGEM",
+  "grupo": {
+   "id": "501",
+   "descricao": "TRANSPORTE MARÍTIMO DE CABOTAGEM E LONGO CURSO",
+   "divisao": {
+    "id": "50",
+    "descricao": "TRANSPORTE AQUAVIÁRIO",
+    "secao": {
+     "id": "H",
+     "descricao": "TRANSPORTE, ARMAZENAGEM E CORREIO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "50122",
+  "descricao": "TRANSPORTE MARÍTIMO DE LONGO CURSO",
+  "grupo": {
+   "id": "501",
+   "descricao": "TRANSPORTE MARÍTIMO DE CABOTAGEM E LONGO CURSO",
+   "divisao": {
+    "id": "50",
+    "descricao": "TRANSPORTE AQUAVIÁRIO",
+    "secao": {
+     "id": "H",
+     "descricao": "TRANSPORTE, ARMAZENAGEM E CORREIO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "55108",
+  "descricao": "HOTÉIS E SIMILARES",
+  "grupo": {
+   "id": "551",
+   "descricao": "HOTÉIS E SIMILARES",
+   "divisao": {
+    "id": "55",
+    "descricao": "ALOJAMENTO",
+    "secao": {
+     "id": "I",
+     "descricao": "ALOJAMENTO E ALIMENTAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "55906",
+  "descricao": "OUTROS TIPOS DE ALOJAMENTO NÃO ESPECIFICADOS ANTERIORMENTE",
+  "grupo": {
+   "id": "559",
+   "descricao": "OUTROS TIPOS DE ALOJAMENTO NÃO ESPECIFICADOS ANTERIORMENTE",
+   "divisao": {
+    "id": "55",
+    "descricao": "ALOJAMENTO",
+    "secao": {
+     "id": "I",
+     "descricao": "ALOJAMENTO E ALIMENTAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "56112",
+  "descricao": "RESTAURANTES E OUTROS ESTABELECIMENTOS DE SERVIÇOS DE ALIMENTAÇÃO E BEBIDAS",
+  "grupo": {
+   "id": "561",
+   "descricao": "RESTAURANTES E OUTROS SERVIÇOS DE ALIMENTAÇÃO E BEBIDAS",
+   "divisao": {
+    "id": "56",
+    "descricao": "ALIMENTAÇÃO",
+    "secao": {
+     "id": "I",
+     "descricao": "ALOJAMENTO E ALIMENTAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "64239",
+  "descricao": "CAIXAS ECONÔMICAS",
+  "grupo": {
+   "id": "642",
+   "descricao": "INTERMEDIAÇÃO MONETÁRIA - DEPÓSITOS À VISTA",
+   "divisao": {
+    "id": "64",
+    "descricao": "ATIVIDADES DE SERVIÇOS FINANCEIROS",
+    "secao": {
+     "id": "K",
+     "descricao": "ATIVIDADES FINANCEIRAS, DE SEGUROS E SERVIÇOS RELACIONADOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "64221",
+  "descricao": "BANCOS MÚLTIPLOS, COM CARTEIRA COMERCIAL",
+  "grupo": {
+   "id": "642",
+   "descricao": "INTERMEDIAÇÃO MONETÁRIA - DEPÓSITOS À VISTA",
+   "divisao": {
+    "id": "64",
+    "descricao": "ATIVIDADES DE SERVIÇOS FINANCEIROS",
+    "secao": {
+     "id": "K",
+     "descricao": "ATIVIDADES FINANCEIRAS, DE SEGUROS E SERVIÇOS RELACIONADOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "64107",
+  "descricao": "BANCO CENTRAL",
+  "grupo": {
+   "id": "641",
+   "descricao": "BANCO CENTRAL",
+   "divisao": {
+    "id": "64",
+    "descricao": "ATIVIDADES DE SERVIÇOS FINANCEIROS",
+    "secao": {
+     "id": "K",
+     "descricao": "ATIVIDADES FINANCEIRAS, DE SEGUROS E SERVIÇOS RELACIONADOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "68102",
+  "descricao": "ATIVIDADES IMOBILIÁRIAS DE IMÓVEIS PRÓPRIOS",
+  "grupo": {
+   "id": "681",
+   "descricao": "ATIVIDADES IMOBILIÁRIAS DE IMÓVEIS PRÓPRIOS",
+   "divisao": {
+    "id": "68",
+    "descricao": "ATIVIDADES IMOBILIÁRIAS",
+    "secao": {
+     "id": "L",
+     "descricao": "ATIVIDADES IMOBILIÁRIAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "68218",
+  "descricao": "INTERMEDIAÇÃO NA COMPRA, VENDA E ALUGUEL DE IMÓVEIS",
+  "grupo": {
+   "id": "682",
+   "descricao": "ATIVIDADES IMOBILIÁRIAS POR CONTRATO OU COMISSÃO",
+   "divisao": {
+    "id": "68",
+    "descricao": "ATIVIDADES IMOBILIÁRIAS",
+    "secao": {
+     "id": "L",
+     "descricao": "ATIVIDADES IMOBILIÁRIAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "68226",
+  "descricao": "GESTÃO E ADMINISTRAÇÃO DA PROPRIEDADE IMOBILIÁRIA",
+  "grupo": {
+   "id": "682",
+   "descricao": "ATIVIDADES IMOBILIÁRIAS POR CONTRATO OU COMISSÃO",
+   "divisao": {
+    "id": "68",
+    "descricao": "ATIVIDADES IMOBILIÁRIAS",
+    "secao": {
+     "id": "L",
+     "descricao": "ATIVIDADES IMOBILIÁRIAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "69117",
+  "descricao": "ATIVIDADES JURÍDICAS, EXCETO CARTÓRIOS",
+  "grupo": {
+   "id": "691",
+   "descricao": "ATIVIDADES JURÍDICAS",
+   "divisao": {
+    "id": "69",
+    "descricao": "ATIVIDADES JURÍDICAS, DE CONTABILIDADE E DE AUDITORIA",
+    "secao": {
+     "id": "M",
+     "descricao": "ATIVIDADES PROFISSIONAIS, CIENTÍFICAS E TÉCNICAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "69125",
+  "descricao": "CARTÓRIOS",
+  "grupo": {
+   "id": "691",
+   "descricao": "ATIVIDADES JURÍDICAS",
+   "divisao": {
+    "id": "69",
+    "descricao": "ATIVIDADES JURÍDICAS, DE CONTABILIDADE E DE AUDITORIA",
+    "secao": {
+     "id": "M",
+     "descricao": "ATIVIDADES PROFISSIONAIS, CIENTÍFICAS E TÉCNICAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "69206",
+  "descricao": "ATIVIDADES DE CONTABILIDADE, CONSULTORIA E AUDITORIA CONTÁBIL E TRIBUTÁRIA",
+  "grupo": {
+   "id": "692",
+   "descricao": "ATIVIDADES DE CONTABILIDADE, CONSULTORIA E AUDITORIA CONTÁBIL E TRIBUTÁRIA",
+   "divisao": {
+    "id": "69",
+    "descricao": "ATIVIDADES JURÍDICAS, DE CONTABILIDADE E DE AUDITORIA",
+    "secao": {
+     "id": "M",
+     "descricao": "ATIVIDADES PROFISSIONAIS, CIENTÍFICAS E TÉCNICAS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "77110",
+  "descricao": "LOCAÇÃO DE AUTOMÓVEIS SEM CONDUTOR",
+  "grupo": {
+   "id": "771",
+   "descricao": "LOCAÇÃO DE MEIOS DE TRANSPORTE SEM CONDUTOR",
+   "divisao": {
+    "id": "77",
+    "descricao": "ALUGUÉIS NÃO-IMOBILIÁRIOS E GESTÃO DE ATIVOS INTANGÍVEIS NÃO-FINANCEIROS",
+    "secao": {
+     "id": "N",
+     "descricao": "ATIVIDADES ADMINISTRATIVAS E SERVIÇOS COMPLEMENTARES"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "82300",
+  "descricao": "ATIVIDADES DE ORGANIZAÇÃO DE EVENTOS, EXCETO CULTURAIS E ESPORTIVOS",
+  "grupo": {
+   "id": "823",
+   "descricao": "ATIVIDADES DE ORGANIZAÇÃO DE EVENTOS, EXCETO CULTURAIS E ESPORTIVOS",
+   "divisao": {
+    "id": "82",
+    "descricao": "SERVIÇOS DE ESCRITÓRIO, DE APOIO ADMINISTRATIVO E OUTROS SERVIÇOS PRESTADOS PRINCIPALMENTE ÀS EMPRESAS",
+    "secao": {
+     "id": "N",
+     "descricao": "ATIVIDADES ADMINISTRATIVAS E SERVIÇOS COMPLEMENTARES"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "77195",
+  "descricao": "LOCAÇÃO DE MEIOS DE TRANSPORTE, EXCETO AUTOMÓVEIS, SEM CONDUTOR",
+  "grupo": {
+   "id": "771",
+   "descricao": "LOCAÇÃO DE MEIOS DE TRANSPORTE SEM CONDUTOR",
+   "divisao": {
+    "id": "77",
+    "descricao": "ALUGUÉIS NÃO-IMOBILIÁRIOS E GESTÃO DE ATIVOS INTANGÍVEIS NÃO-FINANCEIROS",
+    "secao": {
+     "id": "N",
+     "descricao": "ATIVIDADES ADMINISTRATIVAS E SERVIÇOS COMPLEMENTARES"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "84116",
+  "descricao": "ADMINISTRAÇÃO PÚBLICA EM GERAL",
+  "grupo": {
+   "id": "841",
+   "descricao": "ADMINISTRAÇÃO DO ESTADO E DA POLÍTICA ECONÔMICA E SOCIAL",
+   "divisao": {
+    "id": "84",
+    "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL",
+    "secao": {
+     "id": "O",
+     "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "84124",
+  "descricao": "REGULAÇÃO DAS ATIVIDADES DE SAÚDE, EDUCAÇÃO, SERVIÇOS CULTURAIS E OUTROS SERVIÇOS SOCIAIS",
+  "grupo": {
+   "id": "841",
+   "descricao": "ADMINISTRAÇÃO DO ESTADO E DA POLÍTICA ECONÔMICA E SOCIAL",
+   "divisao": {
+    "id": "84",
+    "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL",
+    "secao": {
+     "id": "O",
+     "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "84132",
+  "descricao": "REGULAÇÃO DAS ATIVIDADES ECONÔMICAS",
+  "grupo": {
+   "id": "841",
+   "descricao": "ADMINISTRAÇÃO DO ESTADO E DA POLÍTICA ECONÔMICA E SOCIAL",
+   "divisao": {
+    "id": "84",
+    "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL",
+    "secao": {
+     "id": "O",
+     "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "85333",
+  "descricao": "EDUCAÇÃO SUPERIOR - PÓS-GRADUAÇÃO E EXTENSÃO",
+  "grupo": {
+   "id": "853",
+   "descricao": "EDUCAÇÃO SUPERIOR",
+   "divisao": {
+    "id": "85",
+    "descricao": "EDUCAÇÃO",
+    "secao": {
+     "id": "P",
+     "descricao": "EDUCAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "85112",
+  "descricao": "EDUCAÇÃO INFANTIL - CRECHE",
+  "grupo": {
+   "id": "851",
+   "descricao": "EDUCAÇÃO INFANTIL E ENSINO FUNDAMENTAL",
+   "divisao": {
+    "id": "85",
+    "descricao": "EDUCAÇÃO",
+    "secao": {
+     "id": "P",
+     "descricao": "EDUCAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "85121",
+  "descricao": "EDUCAÇÃO INFANTIL - PRÉ-ESCOLA",
+  "grupo": {
+   "id": "851",
+   "descricao": "EDUCAÇÃO INFANTIL E ENSINO FUNDAMENTAL",
+   "divisao": {
+    "id": "85",
+    "descricao": "EDUCAÇÃO",
+    "secao": {
+     "id": "P",
+     "descricao": "EDUCAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "86101",
+  "descricao": "ATIVIDADES DE ATENDIMENTO HOSPITALAR",
+  "grupo": {
+   "id": "861",
+   "descricao": "ATIVIDADES DE ATENDIMENTO HOSPITALAR",
+   "divisao": {
+    "id": "86",
+    "descricao": "ATIVIDADES DE ATENÇÃO À SAÚDE HUMANA",
+    "secao": {
+     "id": "Q",
+     "descricao": "SAÚDE HUMANA E SERVIÇOS SOCIAIS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "86216",
+  "descricao": "SERVIÇOS MÓVEIS DE ATENDIMENTO A URGÊNCIAS",
+  "grupo": {
+   "id": "862",
+   "descricao": "SERVIÇOS MÓVEIS DE ATENDIMENTO A URGÊNCIAS E DE REMOÇÃO DE PACIENTES",
+   "divisao": {
+    "id": "86",
+    "descricao": "ATIVIDADES DE ATENÇÃO À SAÚDE HUMANA",
+    "secao": {
+     "id": "Q",
+     "descricao": "SAÚDE HUMANA E SERVIÇOS SOCIAIS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "90019",
+  "descricao": "ARTES CÊNICAS, ESPETÁCULOS E ATIVIDADES COMPLEMENTARES",
+  "grupo": {
+   "id": "900",
+   "descricao": "ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS",
+   "divisao": {
+    "id": "90",
+    "descricao": "ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS",
+    "secao": {
+     "id": "R",
+     "descricao": "ARTES, CULTURA, ESPORTE E RECREAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "90027",
+  "descricao": "CRIAÇÃO ARTÍSTICA",
+  "grupo": {
+   "id": "900",
+   "descricao": "ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS",
+   "divisao": {
+    "id": "90",
+    "descricao": "ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS",
+    "secao": {
+     "id": "R",
+     "descricao": "ARTES, CULTURA, ESPORTE E RECREAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "90035",
+  "descricao": "GESTÃO DE ESPAÇOS PARA ARTES CÊNICAS, ESPETÁCULOS E OUTRAS ATIVIDADES ARTÍSTICAS",
+  "grupo": {
+   "id": "900",
+   "descricao": "ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS",
+   "divisao": {
+    "id": "90",
+    "descricao": "ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS",
+    "secao": {
+     "id": "R",
+     "descricao": "ARTES, CULTURA, ESPORTE E RECREAÇÃO"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "95118",
+  "descricao": "REPARAÇÃO E MANUTENÇÃO DE COMPUTADORES E DE EQUIPAMENTOS PERIFÉRICOS",
+  "grupo": {
+   "id": "951",
+   "descricao": "REPARAÇÃO E MANUTENÇÃO DE EQUIPAMENTOS DE INFORMÁTICA E COMUNICAÇÃO",
+   "divisao": {
+    "id": "95",
+    "descricao": "REPARAÇÃO E MANUTENÇÃO DE EQUIPAMENTOS DE INFORMÁTICA E COMUNICAÇÃO E DE OBJETOS PESSOAIS E DOMÉSTICOS",
+    "secao": {
+     "id": "S",
+     "descricao": "OUTRAS ATIVIDADES DE SERVIÇOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "95126",
+  "descricao": "REPARAÇÃO E MANUTENÇÃO DE EQUIPAMENTOS DE COMUNICAÇÃO",
+  "grupo": {
+   "id": "951",
+   "descricao": "REPARAÇÃO E MANUTENÇÃO DE EQUIPAMENTOS DE INFORMÁTICA E COMUNICAÇÃO",
+   "divisao": {
+    "id": "95",
+    "descricao": "REPARAÇÃO E MANUTENÇÃO DE EQUIPAMENTOS DE INFORMÁTICA E COMUNICAÇÃO E DE OBJETOS PESSOAIS E DOMÉSTICOS",
+    "secao": {
+     "id": "S",
+     "descricao": "OUTRAS ATIVIDADES DE SERVIÇOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "94111",
+  "descricao": "ATIVIDADES DE ORGANIZAÇÕES ASSOCIATIVAS PATRONAIS E EMPRESARIAIS",
+  "grupo": {
+   "id": "941",
+   "descricao": "ATIVIDADES DE ORGANIZAÇÕES ASSOCIATIVAS PATRONAIS, EMPRESARIAIS E PROFISSIONAIS",
+   "divisao": {
+    "id": "94",
+    "descricao": "ATIVIDADES DE ORGANIZAÇÕES ASSOCIATIVAS",
+    "secao": {
+     "id": "S",
+     "descricao": "OUTRAS ATIVIDADES DE SERVIÇOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "97005",
+  "descricao": "SERVIÇOS DOMÉSTICOS",
+  "grupo": {
+   "id": "970",
+   "descricao": "SERVIÇOS DOMÉSTICOS",
+   "divisao": {
+    "id": "97",
+    "descricao": "SERVIÇOS DOMÉSTICOS",
+    "secao": {
+     "id": "T",
+     "descricao": "SERVIÇOS DOMÉSTICOS"
+    }
+   }
+  },
+  "observacoes": []
+ },
+ {
+  "id": "99008",
+  "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+  "grupo": {
+   "id": "990",
+   "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+   "divisao": {
+    "id": "99",
+    "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+    "secao": {
+     "id": "U",
+     "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS"
+    }
+   }
+  },
+  "observacoes": []
+ }
+]

@@ -1,0 +1,107 @@
+[
+ {
+  "id": "A",
+  "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA",
+  "observacoes": []
+ },
+ {
+  "id": "B",
+  "descricao": "INDÚSTRIAS EXTRATIVAS",
+  "observacoes": []
+ },
+ {
+  "id": "C",
+  "descricao": "INDÚSTRIAS DE TRANSFORMAÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "D",
+  "descricao": "ELETRICIDADE E GÁS",
+  "observacoes": []
+ },
+ {
+  "id": "E",
+  "descricao": "ÁGUA, ESGOTO, ATIVIDADES DE GESTÃO DE RESÍDUOS E DESCONTAMINAÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "F",
+  "descricao": "CONSTRUÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "G",
+  "descricao": "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+  "observacoes": []
+ },
+ {
+  "id": "H",
+  "descricao": "TRANSPORTE, ARMAZENAGEM E CORREIO",
+  "observacoes": []
+ },
+ {
+  "id": "I",
+  "descricao": "ALOJAMENTO E ALIMENTAÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "J",
+  "descricao": "INFORMAÇÃO E COMUNICAÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "K",
+  "descricao": "ATIVIDADES FINANCEIRAS, DE SEGUROS E SERVIÇOS RELACIONADOS",
+  "observacoes": []
+ },
+ {
+  "id": "L",
+  "descricao": "ATIVIDADES IMOBILIÁRIAS",
+  "observacoes": []
+ },
+ {
+  "id": "M",
+  "descricao": "ATIVIDADES PROFISSIONAIS, CIENTÍFICAS E TÉCNICAS",
+  "observacoes": []
+ },
+ {
+  "id": "N",
+  "descricao": "ATIVIDADES ADMINISTRATIVAS E SERVIÇOS COMPLEMENTARES",
+  "observacoes": []
+ },
+ {
+  "id": "O",
+  "descricao": "ADMINISTRAÇÃO PÚBLICA, DEFESA E SEGURIDADE SOCIAL",
+  "observacoes": []
+ },
+ {
+  "id": "P",
+  "descricao": "EDUCAÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "Q",
+  "descricao": "SAÚDE HUMANA E SERVIÇOS SOCIAIS",
+  "observacoes": []
+ },
+ {
+  "id": "R",
+  "descricao": "ARTES, CULTURA, ESPORTE E RECREAÇÃO",
+  "observacoes": []
+ },
+ {
+  "id": "S",
+  "descricao": "OUTRAS ATIVIDADES DE SERVIÇOS",
+  "observacoes": []
+ },
+ {
+  "id": "T",
+  "descricao": "SERVIÇOS DOMÉSTICOS",
+  "observacoes": []
+ },
+ {
+  "id": "U",
+  "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+  "observacoes": []
+ }
+]

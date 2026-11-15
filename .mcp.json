@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "mcp-dados-brasil": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["--env-file-if-exists=.env", "src/mcp/server.js"],
+      "env": {}
+    }
+  }
+}

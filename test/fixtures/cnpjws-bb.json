@@ -1,0 +1,110 @@
+{
+ "cnpj_raiz": "00000000",
+ "razao_social": "BANCO DO BRASIL SA",
+ "capital_social": "120000000000.00",
+ "responsavel_federativo": "",
+ "atualizado_em": "2026-10-10T03:00:00.000Z",
+ "porte": {
+  "id": "05",
+  "descricao": "Demais"
+ },
+ "natureza_juridica": {
+  "id": "2038",
+  "descricao": "Sociedade de Economia Mista"
+ },
+ "qualificacao_do_responsavel": {
+  "id": 10,
+  "descricao": "Diretor "
+ },
+ "simples": {
+  "mei": "Não",
+  "simples": "Não",
+  "data_opcao_mei": "2009-07-01",
+  "data_exclusao_mei": "2009-07-01",
+  "data_opcao_simples": "2007-07-01",
+  "data_exclusao_simples": "2007-07-01",
+  "atualizado_em": "2026-10-10T03:00:00.000Z"
+ },
+ "estabelecimento": {
+  "cnpj": "00000000000191",
+  "atividades_secundarias": [
+   {
+    "id": "6499999",
+    "secao": "K",
+    "divisao": "64",
+    "grupo": "64.9",
+    "classe": "64.99-9",
+    "subclasse": "6499-9/99",
+    "descricao": "Outras atividades de serviços financeiros não especificadas anteriormente"
+   }
+  ],
+  "cnpj_raiz": "00000000",
+  "cnpj_ordem": "0001",
+  "cnpj_digito_verificador": "91",
+  "tipo": "Matriz",
+  "nome_fantasia": "DIRECAO GERAL",
+  "situacao_cadastral": "Ativa",
+  "data_situacao_cadastral": "2005-11-03",
+  "data_inicio_atividade": "1966-08-01",
+  "nome_cidade_exterior": null,
+  "tipo_logradouro": "QUADRA",
+  "logradouro": "SAUN QUADRA 5 BLOCO B TORRE I, II, III",
+  "numero": "SN",
+  "complemento": "ANDAR T I SL S101 A S1602       T II SL C101 A C1602      TIII SL N101 A N1602",
+  "bairro": "ASA NORTE",
+  "cep": "70040912",
+  "ddd1": "61",
+  "telefone1": "34939002",
+  "ddd2": null,
+  "telefone2": null,
+  "ddd_fax": "61",
+  "fax": "34931040",
+  "email": "secex@bb.com.br",
+  "situacao_especial": null,
+  "data_situacao_especial": null,
+  "atualizado_em": "2026-10-10T03:00:00.000Z",
+  "atividade_principal": {
+   "id": "6422100",
+   "secao": "K",
+   "divisao": "64",
+   "grupo": "64.2",
+   "classe": "64.22-1",
+   "subclasse": "6422-1/00",
+   "descricao": "Bancos múltiplos, com carteira comercial"
+  },
+  "pais": {
+   "id": "1058",
+   "iso2": "BR",
+   "iso3": "BRA",
+   "nome": "Brasil",
+   "comex_id": "105"
+  },
+  "estado": {
+   "id": 7,
+   "nome": "Distrito Federal",
+   "sigla": "DF",
+   "ibge_id": 53
+  },
+  "cidade": {
+   "id": 5570,
+   "nome": "Brasília",
+   "ibge_id": 5300108,
+   "siafi_id": "9701"
+  },
+  "motivo_situacao_cadastral": null,
+  "inscricoes_estaduais": [
+   {
+    "inscricao_estadual": "0809427800174",
+    "ativo": true,
+    "atualizado_em": "2025-10-10T13:40:01.080Z",
+    "estado": {
+     "id": 7,
+     "nome": "Distrito Federal",
+     "sigla": "DF",
+     "ibge_id": 53
+    }
+   }
+  ]
+ },
+ "observacao": null
+}
