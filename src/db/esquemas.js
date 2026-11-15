@@ -30,7 +30,7 @@ export const telefoneE164 = z
     return e ?? z.NEVER;
   });
 
-const ORIGEM_CONTATO = ['brasilapi', 'cnpjws', 'site', 'manual', 'NAO_VERIFICADO'];
+const ORIGEM_CONTATO = ['brasilapi', 'cnpjws', 'rfb_lote', 'site', 'manual', 'NAO_VERIFICADO'];
 
 export const EmpresaEntrada = z
   .object({
@@ -68,6 +68,7 @@ export const EmpresaEntrada = z
     email: opcional(z.string().trim().toLowerCase().regex(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)),
     email_origem: z.enum(ORIGEM_CONTATO).default('NAO_VERIFICADO'),
     dominio: opcional(z.string().trim().toLowerCase().regex(/^[a-z0-9.-]+\.[a-z]{2,}$/)),
+    dominio_origem: opcional(z.enum(['email_rfb', 'email_brasilapi', 'email_cnpjws', 'site_radar', 'manual'])),
     etapa_funil: z.enum(ETAPAS).default('candidato'),
     consultado_em: opcional(z.string().datetime({ offset: true })),
   })
@@ -81,6 +82,8 @@ export const EmpresaEntrada = z
     const temGeo = e.lat != null || e.lon != null;
     if (temGeo && (e.lat == null || e.lon == null || !e.geo_fonte || e.geo_precisao === 'NAO_VERIFICADO'))
       falta('geo_fonte', 'coordenada exige lat, lon, geo_fonte e geo_precisao');
+    if ((e.dominio == null) !== (e.dominio_origem == null))
+      falta('dominio_origem', 'domínio presente exige dominio_origem (e vice-versa)');
     if (!temGeo && (e.geo_fonte || e.geo_precisao !== 'NAO_VERIFICADO'))
       falta('geo_precisao', 'sem coordenada a precisão é NAO_VERIFICADO e a fonte é nula');
   });
@@ -142,3 +145,19 @@ export const FiltroEmpresas = z
   .strict();
 
 export const OrganizationId = z.uuid({ message: 'organization_id deve ser um UUID' });
+
+export const ExecucaoInicio = z
+  .object({
+    tipo: z.enum(['receita', 'pncp', 'enriquecimento']),
+    parametros: z.record(z.string(), z.unknown()).default({}),
+  })
+  .strict();
+
+export const ExecucaoAtualizacao = z
+  .object({
+    status: z.enum(['em_andamento', 'concluida', 'falhou', 'interrompida']).optional(),
+    checkpoint: z.unknown().optional(),
+    contadores: z.record(z.string(), z.unknown()).optional(),
+    erro: z.string().nullable().optional(),
+  })
+  .strict();

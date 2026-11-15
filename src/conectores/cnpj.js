@@ -91,7 +91,7 @@ function formatarTelefone(bruto) {
 }
 
 /** Junta tipo + logradouro sem duplicar (ex.: "QUADRA" + "SAUN QUADRA 5" fica só "SAUN QUADRA 5" se já contiver o tipo). */
-function montarLogradouro(tipo, logradouro) {
+export function montarLogradouro(tipo, logradouro) {
   if (!logradouro) return tipo || null;
   const palavras = String(logradouro).toUpperCase().split(/\s+/);
   if (!tipo || palavras.includes(String(tipo).toUpperCase())) return logradouro;

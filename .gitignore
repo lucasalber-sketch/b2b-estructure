@@ -1,5 +1,7 @@
 node_modules/
 .env
 data/cache/
+data/receita/
 *.tmp
 .DS_Store
+data/*.log

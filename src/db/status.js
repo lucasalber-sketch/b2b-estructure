@@ -3,7 +3,7 @@
 import { statusMigracoes } from './migracoes.js';
 import { mascararSegredos } from './conexao.js';
 
-export const TABELAS = ['empresas', 'empresa_contratos_pncp', 'empresa_sinais_erp', 'funil_historico', 'nao_contatar'];
+export const TABELAS = ['empresas', 'empresa_contratos_pncp', 'empresa_sinais_erp', 'funil_historico', 'nao_contatar', 'ingestao_execucoes'];
 
 export async function diagnosticar(conexao) {
   const inicio = performance.now();

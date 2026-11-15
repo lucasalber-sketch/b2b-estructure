@@ -7,12 +7,14 @@ import { criarConexao } from '../../src/db/conexao.js';
 import { aplicarMigracoes, statusMigracoes, DIR_MIGRACOES } from '../../src/db/migracoes.js';
 import { diagnosticar, TABELAS } from '../../src/db/status.js';
 
+const TODAS = ['001_inicial.sql', '002_ingestao_e_enriquecimento.sql'];
+
 describe('migrações', () => {
   test('aplica 001 uma vez; a 2ª execução não faz nada', async () => {
     const db = await criarConexao({ memoria: true });
     try {
-      assert.deepEqual((await statusMigracoes(db)).pendentes, ['001_inicial.sql']);
-      assert.deepEqual((await aplicarMigracoes(db)).aplicadas, ['001_inicial.sql']);
+      assert.deepEqual((await statusMigracoes(db)).pendentes, TODAS);
+      assert.deepEqual((await aplicarMigracoes(db)).aplicadas, TODAS);
       assert.deepEqual((await aplicarMigracoes(db)).aplicadas, []);
       const s = await statusMigracoes(db);
       assert.deepEqual(s.pendentes, []);
@@ -26,8 +28,8 @@ describe('migrações', () => {
     const db = await criarConexao({ memoria: true });
     try {
       const r = await aplicarMigracoes(db, { simular: true });
-      assert.deepEqual(r.simuladas, ['001_inicial.sql']);
-      assert.deepEqual((await statusMigracoes(db)).pendentes, ['001_inicial.sql']);
+      assert.deepEqual(r.simuladas, TODAS);
+      assert.deepEqual((await statusMigracoes(db)).pendentes, TODAS);
     } finally {
       await db.fechar();
     }

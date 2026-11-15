@@ -3,19 +3,21 @@
 // de modo que o RLS do banco (e não só este código) garante o isolamento entre organizações.
 import {
   EmpresaEntrada, ContratoPncpEntrada, SinalEntrada, MoverFunilEntrada, BloqueioEntrada, FiltroEmpresas,
-  OrganizationId, cnpj as CnpjSchema, paraE164,
+  OrganizationId, ExecucaoInicio, ExecucaoAtualizacao, cnpj as CnpjSchema, paraE164,
 } from './esquemas.js';
+
+const TAMANHO_LOTE = 500;
 
 const COLUNAS = [
   'cnpj', 'cnpj_origem', 'fonte_descoberta', 'razao_social', 'nome_fantasia', 'matriz_filial', 'situacao',
   'data_abertura', 'porte', 'natureza_juridica_codigo', 'mei', 'capital_social', 'cnae_principal', 'cnaes_secundarios',
   'logradouro', 'numero', 'complemento', 'bairro', 'cep', 'municipio', 'uf', 'codigo_ibge',
   'lat', 'lon', 'geo_precisao', 'geo_fonte', 'telefone_e164', 'telefone_origem', 'email', 'email_origem',
-  'dominio', 'etapa_funil', 'consultado_em',
+  'dominio', 'dominio_origem', 'etapa_funil', 'consultado_em',
 ];
 // No upsert, coordenada e domínio antigos são preservados se a nova consulta não os trouxer;
 // a etapa do funil só muda via moverFunil().
-const PRESERVAR_SE_NULO = { lat: 'lat', lon: 'lat', geo_precisao: 'lat', geo_fonte: 'lat', dominio: 'dominio' };
+const PRESERVAR_SE_NULO = { lat: 'lat', lon: 'lat', geo_precisao: 'lat', geo_fonte: 'lat', dominio: 'dominio', dominio_origem: 'dominio' };
 
 const SELECT_EMPRESA = `
   SELECT e.*,
@@ -37,6 +39,8 @@ function mapearEmpresa(r) {
     lon: num(e.lon),
     telefone_e164: bloq ? null : e.telefone_e164,
     telefone_origem: bloq ? 'BLOQUEADO_LGPD' : e.telefone_origem,
+    geo_enriquecido_em: iso(e.geo_enriquecido_em),
+    site_enriquecido_em: iso(e.site_enriquecido_em),
     consultado_em: iso(e.consultado_em),
     criado_em: iso(e.criado_em),
     atualizado_em: iso(e.atualizado_em),
@@ -123,11 +127,45 @@ export function criarRepositorio(conexao, { organizationId }) {
       return fn(tx);
     });
 
-  async function idEmpresa(tx, cnpj) {
-    const { rows } = await tx.query('SELECT id FROM prospeccao.empresas WHERE cnpj = $1', [cnpj]);
+  async function idEmpresa(tx, cnpj, { aceitarBasico = false } = {}) {
+    const { rows } = aceitarBasico
+      ? await tx.query(
+          `SELECT id FROM prospeccao.empresas WHERE cnpj = $1 OR cnpj_basico = substr($1, 1, 8) ORDER BY (cnpj = $1) DESC LIMIT 1`,
+          [cnpj]
+        )
+      : await tx.query('SELECT id FROM prospeccao.empresas WHERE cnpj = $1', [cnpj]);
     if (!rows.length) throw new Error(`empresa ${cnpj} não cadastrada nesta organização`);
     return rows[0].id;
   }
+
+  // dominio_confirmado só vale para o domínio em que foi confirmado: domínio novo volta a false.
+  const SET_UPSERT = [
+    ...COLUNAS.filter((c) => c !== 'cnpj' && c !== 'etapa_funil').map((c) =>
+      PRESERVAR_SE_NULO[c]
+        ? `${c} = CASE WHEN EXCLUDED.${PRESERVAR_SE_NULO[c]} IS NULL THEN empresas.${c} ELSE EXCLUDED.${c} END`
+        : `${c} = EXCLUDED.${c}`
+    ),
+    `dominio_confirmado = CASE WHEN EXCLUDED.dominio IS NULL OR EXCLUDED.dominio = empresas.dominio
+                               THEN empresas.dominio_confirmado ELSE false END`,
+  ].join(', ');
+  const SQL_UPSERT = `INSERT INTO prospeccao.empresas (organization_id, ${COLUNAS.join(', ')})
+     VALUES ($1, ${COLUNAS.map((_, i) => `$${i + 2}`).join(', ')})
+     ON CONFLICT (organization_id, cnpj) DO UPDATE SET ${SET_UPSERT}
+     RETURNING *, false AS telefone_bloqueado`;
+  const upsert = async (tx, e) => (await tx.query(SQL_UPSERT, [org, ...COLUNAS.map((c) => e[c])])).rows[0];
+  const upsertLote = async (tx, lote) => {
+    const nCols = COLUNAS.length;
+    const params = [org];
+    const tuplas = lote.map((e, idx) => {
+      const base = idx * nCols + 2;
+      for (const c of COLUNAS) params.push(e[c]);
+      return `($1, ${COLUNAS.map((_, j) => `$${base + j}`).join(', ')})`;
+    });
+    const sql = `INSERT INTO prospeccao.empresas (organization_id, ${COLUNAS.join(', ')})
+       VALUES ${tuplas.join(', ')}
+       ON CONFLICT (organization_id, cnpj) DO UPDATE SET ${SET_UPSERT}`;
+    await tx.query(sql, params);
+  };
 
   return {
     organizationId: org,
@@ -135,21 +173,101 @@ export function criarRepositorio(conexao, { organizationId }) {
     /** Insere ou atualiza por (organização, CNPJ). Recusa CNPJ em nao_contatar. */
     async salvarEmpresa(dados) {
       const e = EmpresaEntrada.parse(dados);
-      const valores = COLUNAS.map((c) => e[c]);
-      const atualizar = COLUNAS.filter((c) => c !== 'cnpj' && c !== 'etapa_funil').map((c) =>
-        PRESERVAR_SE_NULO[c]
-          ? `${c} = CASE WHEN EXCLUDED.${PRESERVAR_SE_NULO[c]} IS NULL THEN empresas.${c} ELSE EXCLUDED.${c} END`
-          : `${c} = EXCLUDED.${c}`
-      );
+      return comOrg(async (tx) => mapearEmpresa(await upsert(tx, e)));
+    },
+
+    /**
+     * Versão em lote de salvarEmpresa (mesma validação e mesmo SQL), uma transação por lote de até 500.
+     * Linhas inválidas (Zod) ou em nao_contatar ficam fora e são relatadas; se o lote falhar no banco,
+     * ele é regravado linha a linha para isolar só a linha problemática.
+     * @returns {Promise<{ gravadas: number, recusadas: Array<{ cnpj: string, motivo: string }> }>}
+     */
+    async salvarEmpresas(lista) {
+      const recusadas = [];
+      const validas = [];
+      for (const dados of lista) {
+        const r = EmpresaEntrada.safeParse(dados);
+        if (r.success) validas.push(r.data);
+        else recusadas.push({ cnpj: String(dados?.cnpj ?? ''), motivo: r.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ') });
+      }
+      const bloqueados = await this.cnpjsBloqueados(validas.map((e) => e.cnpj));
+      const aGravar = validas.filter((e) => {
+        if (!bloqueados.has(e.cnpj)) return true;
+        recusadas.push({ cnpj: e.cnpj, motivo: 'nao_contatar' });
+        return false;
+      });
+
+      let gravadas = 0;
+      for (let i = 0; i < aGravar.length; i += TAMANHO_LOTE) {
+        const lote = aGravar.slice(i, i + TAMANHO_LOTE);
+        try {
+          await comOrg((tx) => upsertLote(tx, lote));
+          gravadas += lote.length;
+        } catch {
+          for (const e of lote) {
+            try {
+              await comOrg((tx) => upsert(tx, e));
+              gravadas += 1;
+            } catch (erro) {
+              recusadas.push({ cnpj: e.cnpj, motivo: erro.message });
+            }
+          }
+        }
+      }
+      return { gravadas, recusadas };
+    },
+
+    /** Subconjunto dos CNPJs informados que está em nao_contatar. */
+    async cnpjsBloqueados(cnpjs) {
+      if (!cnpjs.length) return new Set();
+      return comOrg(async (tx) => {
+        const { rows } = await tx.query('SELECT cnpj FROM prospeccao.nao_contatar WHERE cnpj = ANY($1::text[])', [cnpjs]);
+        return new Set(rows.map((r) => r.cnpj));
+      });
+    },
+
+    /** Abre o registro de uma rodada de ingestão/enriquecimento. Retorna o id. */
+    async iniciarExecucao(dados) {
+      const e = ExecucaoInicio.parse(dados);
       return comOrg(async (tx) => {
         const { rows } = await tx.query(
-          `INSERT INTO prospeccao.empresas (organization_id, ${COLUNAS.join(', ')})
-           VALUES ($1, ${COLUNAS.map((_, i) => `$${i + 2}`).join(', ')})
-           ON CONFLICT (organization_id, cnpj) DO UPDATE SET ${atualizar.join(', ')}
-           RETURNING *, false AS telefone_bloqueado`,
-          [org, ...valores]
+          `INSERT INTO prospeccao.ingestao_execucoes (organization_id, tipo, parametros) VALUES ($1, $2, $3) RETURNING id`,
+          [org, e.tipo, JSON.stringify(e.parametros)]
         );
-        return mapearEmpresa(rows[0]);
+        return rows[0].id;
+      });
+    },
+
+    /** Atualiza checkpoint/contadores; status final grava finalizado_em. */
+    async atualizarExecucao(id, dados) {
+      const a = ExecucaoAtualizacao.parse(dados);
+      return comOrg(async (tx) => {
+        const { rows } = await tx.query(
+          `UPDATE prospeccao.ingestao_execucoes SET
+             status = coalesce($2, status),
+             checkpoint = CASE WHEN $3::boolean THEN $4::jsonb ELSE checkpoint END,
+             contadores = coalesce($5::jsonb, contadores),
+             erro = CASE WHEN $6::boolean THEN $7 ELSE erro END,
+             atualizado_em = now(),
+             finalizado_em = CASE WHEN coalesce($2, status) = 'em_andamento' THEN NULL ELSE coalesce(finalizado_em, now()) END
+           WHERE id = $1 RETURNING id, tipo, status, checkpoint, contadores, erro`,
+          [id, a.status ?? null, a.checkpoint !== undefined, JSON.stringify(a.checkpoint ?? null),
+            a.contadores ? JSON.stringify(a.contadores) : null, a.erro !== undefined, a.erro ?? null]
+        );
+        if (!rows.length) throw new Error(`execução ${id} não encontrada nesta organização`);
+        return rows[0];
+      });
+    },
+
+    /** Última execução de um tipo (para retomar pelo checkpoint). */
+    async ultimaExecucao(tipo) {
+      return comOrg(async (tx) => {
+        const { rows } = await tx.query(
+          `SELECT id, tipo, status, parametros, checkpoint, contadores, erro, iniciado_em, finalizado_em
+             FROM prospeccao.ingestao_execucoes WHERE tipo = $1 ORDER BY iniciado_em DESC LIMIT 1`,
+          [tipo]
+        );
+        return rows[0] ?? null;
       });
     },
 
@@ -205,7 +323,7 @@ export function criarRepositorio(conexao, { organizationId }) {
     async registrarContratoPncp(dados) {
       const c = ContratoPncpEntrada.parse(dados);
       return comOrg(async (tx) => {
-        const empresaId = await idEmpresa(tx, c.cnpj_fornecedor);
+        const empresaId = await idEmpresa(tx, c.cnpj_fornecedor, { aceitarBasico: true });
         const { rows } = await tx.query(
           `INSERT INTO prospeccao.empresa_contratos_pncp
              (organization_id, empresa_id, numero_controle_pncp, cnpj_fornecedor, orgao_cnpj, orgao_nome, objeto,
@@ -221,6 +339,131 @@ export function criarRepositorio(conexao, { organizationId }) {
         );
         return { ...rows[0], valor_global: num(rows[0].valor_global), coletado_em: iso(rows[0].coletado_em) };
       });
+    },
+
+    /** Conjunto de todas as raízes cnpj_basico (8 chars) cadastradas e não bloqueadas nesta organização. */
+    async cnpjsBasicosCadastrados() {
+      return comOrg(async (tx) => {
+        const { rows } = await tx.query(
+          `SELECT DISTINCT e.cnpj_basico
+             FROM prospeccao.empresas e
+            WHERE NOT EXISTS (SELECT 1 FROM prospeccao.nao_contatar n WHERE n.cnpj = e.cnpj)`
+        );
+        return new Set(rows.map((r) => r.cnpj_basico));
+      });
+    },
+
+    /**
+     * Grava contratos PNCP em lote (casando fornecedor pelo CNPJ ou pela raiz cnpj_basico da matriz).
+     * @returns {Promise<{ gravados: number, recusados: Array<{ numero_controle_pncp: string, motivo: string }> }>}
+     */
+    async registrarContratosPncp(lista) {
+      const recusados = [];
+      let gravados = 0;
+      for (const item of lista) {
+        const r = ContratoPncpEntrada.safeParse(item);
+        if (!r.success) {
+          recusados.push({
+            numero_controle_pncp: String(item?.numero_controle_pncp ?? ''),
+            motivo: r.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; '),
+          });
+          continue;
+        }
+        try {
+          await this.registrarContratoPncp(r.data);
+          gravados += 1;
+        } catch (erro) {
+          recusados.push({ numero_controle_pncp: r.data.numero_controle_pncp, motivo: erro.message });
+        }
+      }
+      return { gravados, recusados };
+    },
+
+    /**
+     * Lista empresas com enriquecimento pendente (geo e/ou site).
+     * @param {{ tipo?: 'geo' | 'site' | 'ambos', codigo_ibge?: string, cnae?: string, porte?: 'EPP' | 'DEMAIS', limite?: number }} [opcoes]
+     */
+    async listarPendentesEnriquecimento({ tipo = 'ambos', codigo_ibge, cnae, porte, limite = 100 } = {}) {
+      const cond = [];
+      const params = [];
+      const add = (sql, v) => { params.push(v); cond.push(sql.replace('?', `$${params.length}`)); };
+      if (tipo === 'geo') cond.push('e.geo_enriquecido_em IS NULL');
+      else if (tipo === 'site') cond.push('e.site_enriquecido_em IS NULL');
+      else cond.push('(e.geo_enriquecido_em IS NULL OR e.site_enriquecido_em IS NULL)');
+      if (codigo_ibge) add('e.codigo_ibge = ?', codigo_ibge);
+      if (porte) add('e.porte = ?', porte);
+      if (cnae) {
+        params.push(cnae);
+        cond.push(`(e.cnae_principal = $${params.length} OR $${params.length} = ANY(e.cnaes_secundarios))`);
+      }
+      params.push(Math.min(Math.max(1, Number(limite) || 100), 1000));
+      const sql = `${SELECT_EMPRESA} AND ${cond.join(' AND ')}
+                   ORDER BY (e.porte = 'DEMAIS') DESC, e.capital_social DESC NULLS LAST, e.cnpj
+                   LIMIT $${params.length}`;
+      return comOrg(async (tx) => (await tx.query(sql, params)).rows.map(mapearEmpresa));
+    },
+
+    /**
+     * Registra o resultado da geocodificação e carimba geo_enriquecido_em (mesmo quando não encontrou ponto).
+     */
+    async registrarEnriquecimentoGeo(cnpj, { lat = null, lon = null, geo_precisao = 'NAO_VERIFICADO', geo_fonte = null } = {}) {
+      const c = CnpjSchema.parse(cnpj);
+      const temGeo = lat != null && lon != null && geo_fonte && geo_precisao !== 'NAO_VERIFICADO';
+      return comOrg(async (tx) => {
+        const { rows } = await tx.query(
+          `UPDATE prospeccao.empresas SET
+             lat = CASE WHEN $2::boolean THEN $3::double precision ELSE lat END,
+             lon = CASE WHEN $2::boolean THEN $4::double precision ELSE lon END,
+             geo_precisao = CASE WHEN $2::boolean THEN $5 ELSE geo_precisao END,
+             geo_fonte = CASE WHEN $2::boolean THEN $6 ELSE geo_fonte END,
+             geo_enriquecido_em = now(),
+             atualizado_em = now()
+           WHERE cnpj = $1
+           RETURNING *, false AS telefone_bloqueado`,
+          [c, Boolean(temGeo), temGeo ? Number(lat) : null, temGeo ? Number(lon) : null, temGeo ? geo_precisao : 'NAO_VERIFICADO', temGeo ? geo_fonte : null]
+        );
+        if (!rows.length) throw new Error(`empresa ${c} não cadastrada nesta organização`);
+        return mapearEmpresa(rows[0]);
+      });
+    },
+
+    /**
+     * Registra o resultado do radar de site (domínio, confirmação, site_status e sinais de ERP/RH).
+     * Sinais só são gravados quando o domínio foi confirmado pelo CNPJ no site ou informado manualmente.
+     */
+    async registrarEnriquecimentoSite(
+      cnpj,
+      { dominio = null, dominio_origem = null, dominio_confirmado = false, site_status, radar = null } = {}
+    ) {
+      const c = CnpjSchema.parse(cnpj);
+      const statusValidos = ['cnpj_confirmado', 'cnpj_nao_encontrado', 'inacessivel', 'sem_dominio', 'dominio_gratuito'];
+      if (!statusValidos.includes(site_status)) throw new Error(`site_status inválido: "${site_status}"`);
+      const dom = dominio ? String(dominio).trim().toLowerCase() : null;
+      const orig = dom ? dominio_origem : null;
+      const conf = Boolean(dom && dominio_confirmado);
+
+      const empresa = await comOrg(async (tx) => {
+        const { rows } = await tx.query(
+          `UPDATE prospeccao.empresas SET
+             dominio = COALESCE($2, dominio),
+             dominio_origem = CASE WHEN $2 IS NOT NULL THEN $3 ELSE dominio_origem END,
+             dominio_confirmado = CASE WHEN $2 IS NOT NULL THEN $4 ELSE dominio_confirmado END,
+             site_status = $5,
+             site_enriquecido_em = now(),
+             atualizado_em = now()
+           WHERE cnpj = $1
+           RETURNING *, false AS telefone_bloqueado`,
+          [c, dom, orig, conf, site_status]
+        );
+        if (!rows.length) throw new Error(`empresa ${c} não cadastrada nesta organização`);
+        return mapearEmpresa(rows[0]);
+      });
+
+      let sinaisGravados = [];
+      if (radar?.acessivel && (conf || orig === 'manual')) {
+        sinaisGravados = await this.registrarSinaisSite(c, radar);
+      }
+      return { empresa, sinais: sinaisGravados };
     },
 
     async registrarSinal(dados) {

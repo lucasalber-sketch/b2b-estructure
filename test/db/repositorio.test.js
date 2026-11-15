@@ -84,7 +84,7 @@ describe('repositório', () => {
 
   test('upsert atualiza dados e preserva coordenada/etapa quando a nova consulta não as traz', async () => {
     const c = gerarCnpj('202020200001');
-    await repo.salvarEmpresa(empresaBase(c, { lat: -20.46, lon: -54.62, geo_fonte: 'nominatim', geo_precisao: 'rua', dominio: 'teste.com.br' }));
+    await repo.salvarEmpresa(empresaBase(c, { lat: -20.46, lon: -54.62, geo_fonte: 'nominatim', geo_precisao: 'rua', dominio: 'teste.com.br', dominio_origem: 'manual' }));
     await repo.moverFunil({ cnpj: c, etapa: 'qualificado', motivo: 'tem ERP', ator: 'usuario' });
     const e = await repo.salvarEmpresa(empresaBase(c, { situacao: 'ATIVA', telefone_e164: '(67) 3321-0000', telefone_origem: 'cnpjws' }));
     assert.equal(e.situacao, 'ATIVA');

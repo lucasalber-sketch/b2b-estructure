@@ -10,6 +10,7 @@ import { listarMunicipios, listarSecoesCnae, listarClassesCnae } from '../conect
 import { consultarCnpj } from '../conectores/cnpj.js';
 import { geocodificar } from '../conectores/geo.js';
 import { inspecionarSite } from '../conectores/site-radar.js';
+import { consultarContratosPncp } from '../conectores/pncp.js';
 import { criarConexao, bancoConfigurado } from '../db/conexao.js';
 import { diagnosticar } from '../db/status.js';
 
@@ -106,6 +107,35 @@ export function criarServidor() {
       outputSchema: saida,
     },
     ferramenta(({ dominio }) => inspecionarSite(dominio))
+  );
+
+  server.registerTool(
+    'consultar_pncp_contratos',
+    {
+      title: 'PNCP: contratos públicos (PJ)',
+      description:
+        'Consulta a API oficial do PNCP (/api/consulta/v1/contratos) num intervalo de publicação (AAAA-MM-DD), ' +
+        'filtrando apenas fornecedores PJ (LGPD) e opcionalmente por UF do órgão, CNPJ do órgão ou CNPJ/raiz do fornecedor.',
+      inputSchema: {
+        data_inicial: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe('Data inicial AAAA-MM-DD'),
+        data_final: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe('Data final AAAA-MM-DD'),
+        uf_orgao: z.string().length(2).optional().describe('Filtro opcional pela UF da unidade do órgão (ex.: MS)'),
+        cnpj_orgao: z.string().optional().describe('Filtro opcional pelo CNPJ do órgão contratante'),
+        cnpj_fornecedor: z.string().optional().describe('Filtro opcional pelo CNPJ (14 posições) ou raiz (8 posições) do fornecedor'),
+        max_paginas: z.number().int().min(1).max(20).default(5).describe('Máximo de páginas de 500 itens a varrer'),
+      },
+      outputSchema: saida,
+    },
+    ferramenta(({ data_inicial, data_final, uf_orgao, cnpj_orgao, cnpj_fornecedor, max_paginas = 5 }) =>
+      consultarContratosPncp({
+        dataInicial: data_inicial,
+        dataFinal: data_final,
+        ufOrgao: uf_orgao,
+        cnpjOrgao: cnpj_orgao,
+        cnpjFornecedor: cnpj_fornecedor,
+        maxPaginas: max_paginas,
+      })
+    )
   );
 
   // Banco: conexão criada só quando db_status é chamado; sem DATABASE_URL o servidor segue funcionando.

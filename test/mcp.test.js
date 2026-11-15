@@ -28,10 +28,10 @@ describe('servidor MCP', () => {
     limpar();
   });
 
-  test('expõe as 5 ferramentas', async () => {
+  test('expõe as 6 ferramentas', async () => {
     const { tools } = await client.listTools();
     assert.deepEqual(tools.map((t) => t.name).sort(), [
-      'consultar_cnpj_real', 'db_status', 'geocodificar_cep', 'ibge_municipios_cnaes', 'inspecionar_site_erp',
+      'consultar_cnpj_real', 'consultar_pncp_contratos', 'db_status', 'geocodificar_cep', 'ibge_municipios_cnaes', 'inspecionar_site_erp',
     ]);
   });
 
@@ -61,6 +61,6 @@ describe('servidor MCP', () => {
     assert.equal(r.isError, true);
     assert.match(r.content[0].text, /CNPJ inválido/);
     const { tools } = await client.listTools();
-    assert.equal(tools.length, 5);
+    assert.equal(tools.length, 6);
   });
 });
