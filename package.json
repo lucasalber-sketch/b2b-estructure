@@ -12,6 +12,7 @@
     "node": ">=22.9"
   },
   "scripts": {
+    "dev": "node --env-file-if-exists=.env src/web/servidor.js",
     "start": "node --env-file-if-exists=.env src/mcp/server.js",
     "test": "node --test \"test/**/*.test.js\"",
     "test:live": "node scripts/test-live.js",

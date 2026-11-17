@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="claro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prospecção B2B · Mato Grosso do Sul</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%232350c8'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+<div class="app">
+  <!-- ==================== HEADER (.topo) ==================== -->
+  <header class="topo">
+    <div class="marca">
+      <div class="marca-linha">
+        <span class="marca-ponto"></span>
+        <strong id="app-nome">b2b-estructure</strong>
+      </div>
+      <span id="header-meta">Mato Grosso do Sul · Inteligência Comercial ERP</span>
+    </div>
+
+    <div class="abas-visao" role="tablist" aria-label="Visão principal">
+      <button id="tab-mapa" class="aba-visao" data-view="mapa" role="tab" aria-selected="true" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon>
+          <line x1="9" y1="3" x2="9" y2="18"></line>
+          <line x1="15" y1="6" x2="15" y2="21"></line>
+        </svg>
+        <span>Mapa &amp; Polos</span>
+      </button>
+      <button id="tab-dashboard" class="aba-visao" data-view="dashboard" role="tab" aria-selected="false" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+          <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+          <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+          <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+        </svg>
+        <span>Dashboard Executivo</span>
+      </button>
+    </div>
+
+    <div class="metricas" aria-label="Resumo da Base">
+      <div class="metrica"><span>Matrizes MS</span><strong id="st-total">—</strong></div>
+      <div class="metrica"><span>Porte DEMAIS</span><strong id="st-demais">—</strong></div>
+      <div class="metrica"><span>Contratos PNCP</span><strong id="st-pncp">—</strong></div>
+      <div class="metrica"><span>Sinais ERP / RH</span><strong id="st-sinais">—</strong></div>
+    </div>
+
+    <div class="espaco"></div>
+
+    <div class="grupo-acoes">
+      <button id="btn-tema" class="btn btn-fantasma" type="button" title="Alternar tema claro / escuro" aria-label="Alternar tema claro ou escuro">
+        <svg id="icone-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" hidden>
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"></path>
+        </svg>
+        <svg id="icone-lua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <span id="rotulo-tema" class="rotulo-btn">Escuro</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== VISÃO 1: MAPA & LEADS ==================== -->
+  <div id="view-mapa" class="corpo view-ativa">
+    <aside class="lateral" aria-label="Empresas qualificadas">
+      <div class="filtros">
+        <div class="campo-icone campo-busca">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <input id="f-q" class="campo" type="search" placeholder="Buscar razão social, fantasia ou CNPJ..." />
+        </div>
+
+        <select id="f-municipio" class="campo">
+          <option value="">Município: todos (79)</option>
+        </select>
+
+        <select id="f-setor" class="campo">
+          <option value="">Setor: todos</option>
+          <option value="agro">Agronegócio &amp; Bioenergia</option>
+          <option value="industria">Indústria, Celulose &amp; Energia</option>
+          <option value="logistica">Logística &amp; Transportes</option>
+          <option value="construcao">Construção &amp; Imobiliário</option>
+          <option value="atacado">Atacado &amp; Distribuição</option>
+          <option value="servicos">Holdings &amp; Serviços</option>
+        </select>
+
+        <select id="f-porte" class="campo">
+          <option value="">Porte: DEMAIS + EPP</option>
+          <option value="DEMAIS">Só DEMAIS (Médio/Grande)</option>
+          <option value="EPP">Só EPP</option>
+        </select>
+
+        <select id="f-especial" class="campo">
+          <option value="">Sinais: todos</option>
+          <option value="com_sinais">Com Sinais ERP / RH</option>
+          <option value="com_pncp">Fornecedoras PNCP</option>
+          <option value="dominio_confirmado">Domínio Confirmado</option>
+          <option value="com_geo">CEP Geocodificado</option>
+        </select>
+
+        <select id="f-etapa" class="campo">
+          <option value="">Funil: todas as etapas</option>
+          <option value="candidato">Candidato</option>
+          <option value="enriquecido">Enriquecido</option>
+          <option value="qualificado">Qualificado</option>
+          <option value="contatado">Contatado</option>
+          <option value="descartado">Descartado</option>
+        </select>
+
+        <div style="display:flex;gap:6px;">
+          <button id="btn-limpar" class="btn" type="button" style="flex:1">Limpar</button>
+          <button id="btn-exportar" class="btn btn-primario" type="button" title="Exportar empresas filtradas para Excel / CSV (compatível com CRM)" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:14px;height:14px" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Exportar CSV</span>
+          </button>
+        </div>
+
+        <!-- Pílulas coloridas rápidas de filtro por setor -->
+        <div class="chips-setores" id="chips-setores" aria-label="Filtro rápido por setor"></div>
+      </div>
+
+      <div class="contagem">
+        <span id="lista-contagem">Carregando...</span>
+        <span>Ordenado por score</span>
+      </div>
+
+      <div id="lista-empresas" class="lista"></div>
+    </aside>
+
+    <main class="mapa-area">
+      <div id="map" aria-label="Mapa de empresas de Mato Grosso do Sul"></div>
+
+      <!-- Controle de camadas flutuante (mesmo padrão do b2b-hitmap-clients) -->
+      <div class="camadas" role="group" aria-label="Camada do mapa">
+        <label class="rotulo-camada" for="m-camada">Visualização no mapa</label>
+        <select id="m-camada" class="campo">
+          <option value="pontos">Pontos &amp; Agrupamentos</option>
+          <option value="potencial">Mapa de Calor: Score B2B</option>
+          <option value="setor">Mapa de Calor: Concentração</option>
+          <option value="polos">Polos Municipais (79 cidades)</option>
+        </select>
+        <label class=" check-polos">
+          <input type="checkbox" id="chk-polos-fundo" checked />
+          <span>Exibir círculos dos municípios</span>
+        </label>
+      </div>
+
+      <!-- Legenda colorida flutuante no canto inferior esquerdo -->
+      <div class="legenda" id="legenda-mapa" aria-hidden="true"></div>
+
+      <!-- Painel flutuante de detalhe à direita (mesmo padrão do b2b-hitmap-clients) -->
+      <section id="painel" class="painel" aria-label="Dossiê da empresa" hidden>
+        <header>
+          <div style="flex:1;min-width:0">
+            <h2 id="d-nome"></h2>
+            <p id="d-meta"></p>
+          </div>
+          <div class="score">
+            <strong id="d-score"></strong>
+            <span>score</span>
+          </div>
+          <button id="btn-fechar-painel" class="btn btn-fantasma btn-icone" type="button" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18"></path>
+            </svg>
+          </button>
+        </header>
+
+        <div id="d-corpo" class="conteudo"></div>
+
+        <footer id="d-rodape"></footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==================== VISÃO 2: DASHBOARD EXECUTIVO ==================== -->
+  <main id="view-dashboard" class="dashboard-area" hidden>
+    <div class="dash-wrap">
+      <section class="kpi-grid" id="dash-kpis"></section>
+
+      <section class="dash-bloco">
+        <div class="dash-cabecalho">
+          <div>
+            <h2>Matriz Setorial &amp; Teses Consultivas de Venda ERP (Mato Grosso do Sul)</h2>
+            <p>Diagnóstico das dores operacionais por vertical econômica e tese executiva para abordagem.</p>
+          </div>
+        </div>
+        <div id="dash-setores" class="setores-grid"></div>
+      </section>
+
+      <div class="dash-duas-colunas">
+        <section class="dash-bloco">
+          <div class="dash-cabecalho">
+            <div>
+              <h2>Sinais Tecnológicos Confirmados (ERP &amp; RH)</h2>
+              <p>Evidências literais coletadas no HTML público do domínio da empresa.</p>
+            </div>
+          </div>
+          <div id="dash-sinais" class="tabela-container"></div>
+        </section>
+
+        <section class="dash-bloco">
+          <div class="dash-cabecalho">
+            <div>
+              <h2>Contratos Públicos Vinculados (PNCP)</h2>
+              <p>Matrizes e filiais fornecedoras do setor público — alta exigência de compliance e controle de saldo.</p>
+            </div>
+          </div>
+          <div id="dash-pncp" class="tabela-container"></div>
+        </section>
+      </div>
+
+      <div class="dash-duas-colunas">
+        <section class="dash-bloco">
+          <div class="dash-cabecalho">
+            <div>
+              <h2>Principais Polos Municipais de MS (EPP + DEMAIS)</h2>
+              <p>Clique em qualquer município para filtrar e inspecionar suas empresas no mapa.</p>
+            </div>
+          </div>
+          <div id="dash-municipios" class="tabela-container"></div>
+        </section>
+
+        <section class="dash-bloco">
+          <div class="dash-cabecalho">
+            <div>
+              <h2>Governança LGPD &amp; Higienização da Base</h2>
+              <p>Controles determinísticos aplicados no PostgreSQL/Supabase e no motor de qualificação.</p>
+            </div>
+          </div>
+          <div id="dash-governanca"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="aviso" class="aviso" role="status" hidden></div>
+</body>
+</html>

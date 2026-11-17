@@ -12,6 +12,18 @@
       "sourceType": "github",
       "skillPath": "skills/supabase-postgres-best-practices/SKILL.md",
       "computedHash": "3eb972c2d7c818e544e35cc33ea8d7147d4d78ae08142ef40037b0fbac7a2505"
+    },
+    "tremor-design-system": {
+      "source": "fefogarcia/approved-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tremor-design-system/SKILL.md",
+      "computedHash": "cff209ff3b71281eb40250d81a1d98bfc12823543f19cfe509c7e4a31322ea8f"
+    },
+    "web-artifacts-builder": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-artifacts-builder/SKILL.md",
+      "computedHash": "7a081b86fd5068d3ca2c4d9c059956634feff65ccbf1c39c3d34a6e5d0971139"
     }
   }
 }
