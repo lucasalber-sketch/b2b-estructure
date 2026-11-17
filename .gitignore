@@ -5,3 +5,5 @@ data/receita/
 *.tmp
 .DS_Store
 data/*.log
+.claude/
+scratch/

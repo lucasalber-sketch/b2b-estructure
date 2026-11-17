@@ -90,6 +90,20 @@ describe('migração 002', () => {
     }
   });
 
+  test('salvarEmpresas: 1.200 empresas em lotes multi-linha, com CNPJ repetido no mesmo lote', async () => {
+    const lista = Array.from({ length: 1200 }, (_, i) => empresaBase(gerarCnpj(`91${String(i).padStart(6, '0')}0001`)));
+    const repetido = gerarCnpj('910000050001');
+    lista.push(empresaBase(repetido, { razao_social: 'VERSAO FINAL LTDA' }));
+    const r = await repo.salvarEmpresas(lista);
+    assert.equal(r.gravadas, 1200);
+    assert.deepEqual(r.recusadas, []);
+    assert.equal((await repo.buscarPorCnpj(repetido)).razao_social, 'VERSAO FINAL LTDA');
+    const { rows } = await db.query(`SELECT count(*)::int n FROM prospeccao.empresas WHERE organization_id = $1 AND cnpj LIKE '91%'`, [ORG_A]);
+    assert.equal(rows[0].n, 1200);
+    // reimportar o mesmo lote é idempotente (upsert)
+    assert.equal((await repo.salvarEmpresas(lista)).gravadas, 1200);
+  });
+
   test('ingestao_execucoes: ciclo de vida, checkpoint e isolamento', async () => {
     const id = await repo.iniciarExecucao({ tipo: 'receita', parametros: { mes: '2026-10' } });
     let r = await repo.atualizarExecucao(id, { checkpoint: { arquivo: 'Estabelecimentos3.zip' }, contadores: { lidas: 10 } });

@@ -191,11 +191,14 @@ export function criarRepositorio(conexao, { organizationId }) {
         else recusadas.push({ cnpj: String(dados?.cnpj ?? ''), motivo: r.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ') });
       }
       const bloqueados = await this.cnpjsBloqueados(validas.map((e) => e.cnpj));
-      const aGravar = validas.filter((e) => {
-        if (!bloqueados.has(e.cnpj)) return true;
-        recusadas.push({ cnpj: e.cnpj, motivo: 'nao_contatar' });
-        return false;
-      });
+      // Um INSERT multi-linha não pode tocar o mesmo CNPJ duas vezes (ON CONFLICT … "cannot affect
+      // row a second time"): fica a última ocorrência de cada CNPJ.
+      const unicas = new Map();
+      for (const e of validas) {
+        if (bloqueados.has(e.cnpj)) recusadas.push({ cnpj: e.cnpj, motivo: 'nao_contatar' });
+        else unicas.set(e.cnpj, e);
+      }
+      const aGravar = [...unicas.values()];
 
       let gravadas = 0;
       for (let i = 0; i < aGravar.length; i += TAMANHO_LOTE) {
