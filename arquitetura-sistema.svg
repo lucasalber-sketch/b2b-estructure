@@ -1,0 +1,334 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1020" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .box-highlight { fill: #ffffff; stroke: #2563eb; stroke-width: 2; rx: 8; }
+      .card { fill: #f8fafc; stroke: #e2e8f0; stroke-width: 1.2; rx: 6; }
+      
+      .title-main { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 24px; font-weight: 800; fill: #0f172a; letter-spacing: 0.5px; }
+      .subtitle-main { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 500; fill: #475569; }
+      
+      .col-header { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 800; fill: #1e293b; letter-spacing: 0.8px; }
+      .col-sub { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 500; fill: #64748b; }
+      
+      .card-title { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; font-weight: 700; fill: #0f172a; letter-spacing: 0.3px; }
+      .card-desc { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 400; fill: #334155; line-height: 1.4; }
+      .card-meta { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 600; fill: #2563eb; }
+      
+      .badge-sem-ia { fill: #ecfdf5; stroke: #10b981; stroke-width: 1; rx: 4; }
+      .badge-sem-ia-text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 9px; font-weight: 800; fill: #047857; letter-spacing: 0.4px; }
+      
+      .badge-com-ia { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 1; rx: 4; }
+      .badge-com-ia-text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 9px; font-weight: 800; fill: #6d28d9; letter-spacing: 0.4px; }
+      
+      .flow-arrow { stroke: #94a3b8; stroke-width: 2; fill: none; stroke-dasharray: 4 3; marker-end: url(#arrowhead); }
+      .flow-arrow-solid { stroke: #2563eb; stroke-width: 2.2; fill: none; marker-end: url(#arrowhead-blue); }
+    </style>
+
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <!-- Fundo Principal -->
+  <rect width="1600" height="1020" class="bg" />
+
+  <!-- Cabeçalho Executivo -->
+  <g transform="translate(40, 45)">
+    <rect x="0" y="0" width="1520" height="85" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" rx="8" />
+    
+    <text x="30" y="38" class="title-main">ARQUITETURA DO SISTEMA E FLUXO DE INTELIGÊNCIA B2B</text>
+    <text x="30" y="62" class="subtitle-main">Mapeamento ponta a ponta: extração de dados públicos, esteira determinística de higienização, banco Supabase e acionamento comercial em MS</text>
+
+    <!-- Legenda de Dependência de IA -->
+    <g transform="translate(1030, 20)">
+      <rect x="0" y="0" width="460" height="46" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="6" />
+      
+      <rect x="18" y="14" width="18" height="18" class="badge-sem-ia" />
+      <text x="44" y="27" class="card-desc" style="font-weight: 600;">100% DETERMINÍSTICO (SEM IA / AUDITÁVEL · 95%)</text>
+      
+      <rect x="330" y="14" width="18" height="18" class="badge-com-ia" />
+      <text x="356" y="27" class="card-desc" style="font-weight: 600;">ASSISTIDO POR IA (5%)</text>
+    </g>
+  </g>
+
+  <!-- ==================== COLUNA 1: FONTES DE DADOS OFICIAIS ==================== -->
+  <g transform="translate(40, 160)">
+    <rect x="0" y="0" width="350" height="810" class="box" />
+    <path d="M 0 0 L 350 0 L 350 50 L 0 50 Z" fill="#f1f5f9" rx="8" />
+    <text x="20" y="32" class="col-header">1. FONTES DE DADOS GOVERNAMENTAIS</text>
+    <text x="20" y="44" class="col-sub">Dados primários auditáveis de origem pública</text>
+
+    <!-- Card 1.1: Receita Federal -->
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="310" height="155" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">SEM IA · DADOS BRUTOS</text>
+      
+      <text x="16" y="28" class="card-title">RECEITA FEDERAL DO BRASIL</text>
+      <text x="16" y="44" class="card-meta">DADOS ABERTOS DO CNPJ (MENSAL)</text>
+      <text x="16" y="68" class="card-desc">Volume total: 73.809.379 estabelecimentos no Brasil.</text>
+      <text x="16" y="86" class="card-desc">Recorte territorial: 994.428 registros no Mato Grosso do Sul.</text>
+      <text x="16" y="104" class="card-desc">Campos: CNPJ, Razão, Capital Social, CNAE, Endereço e Contatos.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:600; fill:#0f172a;">Integridade: Leitura via streaming direto sem perdas de memória.</text>
+    </g>
+
+    <!-- Card 1.2: PNCP -->
+    <g transform="translate(20, 245)">
+      <rect x="0" y="0" width="310" height="155" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">SEM IA · API OFICIAL</text>
+      
+      <text x="16" y="28" class="card-title">PORTAL NACIONAL (PNCP)</text>
+      <text x="16" y="44" class="card-meta">CONTRATOS PÚBLICOS FEDERAIS E DE MS</text>
+      <text x="16" y="68" class="card-desc">Fonte: API REST oficial do governo federal.</text>
+      <text x="16" y="86" class="card-desc">Volume monitorado: Contratos de fornecimento a órgãos públicos.</text>
+      <text x="16" y="104" class="card-desc">Vínculo: Liga contratos de filiais e matrizes pelo CNPJ básico.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:600; fill:#0f172a;">Comprovante: R$ 17,08 milhões em contratos capturados em MS.</text>
+    </g>
+
+    <!-- Card 1.3: BrasilAPI e Nominatim -->
+    <g transform="translate(20, 420)">
+      <rect x="0" y="0" width="310" height="155" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">SEM IA · BASES CARTOG.</text>
+      
+      <text x="16" y="28" class="card-title">BRASILAPI E NOMINATIM</text>
+      <text x="16" y="44" class="card-meta">INFRAESTRUTURA DE GEOCODIFICAÇÃO</text>
+      <text x="16" y="68" class="card-desc">Camada primária: Consulta de CEP via BrasilAPI v2.</text>
+      <text x="16" y="86" class="card-desc">Camada secundária: Fallback por logradouro no OpenStreetMap.</text>
+      <text x="16" y="104" class="card-desc">Precisão: Identifica coordenadas por rua ou centro de CEP.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:600; fill:#0f172a;">Anti-invenção: Coordenadas sem fonte auditada são nulas.</text>
+    </g>
+
+    <!-- Card 1.4: Radar Web -->
+    <g transform="translate(20, 595)">
+      <rect x="0" y="0" width="310" height="185" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">SEM IA · VARREDURA WEB</text>
+      
+      <text x="16" y="28" class="card-title">RADAR WEB DIRETO</text>
+      <text x="16" y="44" class="card-meta">CRAWLER DE DOMÍNIOS CORPORATIVOS</text>
+      <text x="16" y="68" class="card-desc">Extração de domínio: Derivado do e-mail oficial corporativo.</text>
+      <text x="16" y="86" class="card-desc">Inspeção de HTML: Busca em tempo real da página inicial.</text>
+      <text x="16" y="104" class="card-desc">Assinaturas técnicas: Varredura de sistemas ERP e portais RH.</text>
+      <text x="16" y="122" class="card-desc">Proteção anti-contador: Descarta sites de escritórios contábeis.</text>
+      <text x="16" y="150" class="card-desc" style="font-weight:600; fill:#0f172a;">Exemplo real: Identificou Senior ERP na Taurus e Gupy na Alvorada.</text>
+    </g>
+  </g>
+
+  <!-- ==================== COLUNA 2: ESTEIRA DE HIGIENIZAÇÃO ==================== -->
+  <g transform="translate(420, 160)">
+    <rect x="0" y="0" width="365" height="810" class="box" />
+    <path d="M 0 0 L 365 0 L 365 50 L 0 50 Z" fill="#f1f5f9" rx="8" />
+    <text x="20" y="32" class="col-header">2. HIGIENIZAÇÃO DETERMINÍSTICA</text>
+    <text x="20" y="44" class="col-sub">Regras exatas de engenharia de dados sem alucinação</text>
+
+    <!-- Card 2.1: Funil de Escopo -->
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="325" height="155" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">100% REGRAS DE CÓDIGO</text>
+      
+      <text x="16" y="28" class="card-title">FUNIL DE EXCLUSÃO DE ESCOPO</text>
+      <text x="16" y="44" class="card-meta">DESCARTE DE MEI, PF E INATIVAS</text>
+      <text x="16" y="68" class="card-desc">Descarte 1: 597.430 registros de MEI e Empresários Individuais.</text>
+      <text x="16" y="86" class="card-desc">Descarte 2: 247.169 empresas com situação cadastral inativa.</text>
+      <text x="16" y="104" class="card-desc">Descarte 3: 114.353 filiais cuja matriz fica fora de MS.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#059669;">Resultado: 35.476 matrizes ativas (22.278 EPP e 13.198 DEMAIS).</text>
+    </g>
+
+    <!-- Card 2.2: Alerta de Contador -->
+    <g transform="translate(20, 245)">
+      <rect x="0" y="0" width="325" height="155" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">100% SQL AGREGADO</text>
+      
+      <text x="16" y="28" class="card-title">ALERTA DE TELEFONE DE CONTABILIDADE</text>
+      <text x="16" y="44" class="card-meta">HIGIENE DE CONTATO PARA O SDR</text>
+      <text x="16" y="68" class="card-desc">Problema: 15% dos CNPJs usam o telefone do escritório contábil.</text>
+      <text x="16" y="86" class="card-desc">Solução no banco: Agrupamento em tempo real (HAVING count >= 10).</text>
+      <text x="16" y="104" class="card-desc">Mapeamento em MS: 190 telefones afetam 5.217 empresas.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#2563eb;">Impacto: Alerta visual no painel e penalidade automática de score.</text>
+    </g>
+
+    <!-- Card 2.3: Radar de Evidências Literais -->
+    <g transform="translate(20, 420)">
+      <rect x="0" y="0" width="325" height="155" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">100% REGEX LITERAL</text>
+      
+      <text x="16" y="28" class="card-title">RADAR DE EVIDÊNCIAS LITERAIS</text>
+      <text x="16" y="44" class="card-meta">DETECÇÃO DE SOFTWARE COMPROVADA</text>
+      <text x="16" y="68" class="card-desc">ERP monitorados: TOTVS, SAP, Senior, Sankhya, Linx, Oracle.</text>
+      <text x="16" y="86" class="card-desc">RH monitorados: Gupy, Sólides, Kenoby, Vagas.com, Senior Ronda.</text>
+      <text x="16" y="104" class="card-desc">Critério rigoroso: Exige trecho HTML literal e link de prova.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#0f172a;">Regra anti-erro: Menções soltas a 'whatsapp' nunca ativam 'SAP'.</text>
+    </g>
+
+    <!-- Card 2.4: Validação de Contratos -->
+    <g transform="translate(20, 595)">
+      <rect x="0" y="0" width="325" height="185" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">100% CASAMENTO DE CHAVE</text>
+      
+      <text x="16" y="28" class="card-title">VINCULAÇÃO DE CONTRATOS PÚBLICOS</text>
+      <text x="16" y="44" class="card-meta">PORTAL NACIONAL DE COMPRAS (PNCP)</text>
+      <text x="16" y="68" class="card-desc">Lógica de ligação: Raiz de 8 dígitos (CNPJ básico).</text>
+      <text x="16" y="86" class="card-desc">Casamento: Contrato assinado por filial vincula à matriz em MS.</text>
+      <text x="16" y="104" class="card-desc">Filtragem LGPD: Descarta contratações de pessoas físicas.</text>
+      <text x="16" y="122" class="card-desc">Idempotência: Reexecuções não duplicam números de controle.</text>
+      <text x="16" y="150" class="card-desc" style="font-weight:700; fill:#059669;">Valor agregado: Prova capacidade de fornecimento e solvência.</text>
+    </g>
+  </g>
+
+  <!-- ==================== COLUNA 3: BANCO DE DADOS SUPABASE ==================== -->
+  <g transform="translate(815, 160)">
+    <rect x="0" y="0" width="365" height="810" class="box-highlight" />
+    <path d="M 0 0 L 365 0 L 365 50 L 0 50 Z" fill="#eff6ff" rx="8" />
+    <text x="20" y="32" class="col-header" style="fill:#1e40af;">3. BANCO DE DADOS SUPABASE</text>
+    <text x="20" y="44" class="col-sub">PostgreSQL Corporativo com Isolamento Multi-Tenant</text>
+
+    <!-- Card 3.1: Schema Relacional -->
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="325" height="155" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">SCHEMA PROSPECCAO</text>
+      
+      <text x="16" y="28" class="card-title">TABELA MESTRE DE EMPRESAS</text>
+      <text x="16" y="44" class="card-meta">35.476 MATRIZES SUL-MATO-GROSSENSES</text>
+      <text x="16" y="68" class="card-desc">Campos estruturados: Razão, Fantasia, Porte, Capital, CNAE.</text>
+      <text x="16" y="86" class="card-desc">Controle de contatos: Telefone e e-mail com origens auditadas.</text>
+      <text x="16" y="104" class="card-desc">Constraints: DV de CNPJ auditado por função interna no banco.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#2563eb;">Integridade: Proibição de valores vazios sem origem declarada.</text>
+    </g>
+
+    <!-- Card 3.2: RLS Multi-Tenant -->
+    <g transform="translate(20, 245)">
+      <rect x="0" y="0" width="325" height="155" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">SEGURANÇA POR RLS</text>
+      
+      <text x="16" y="28" class="card-title">ISOLAMENTO MULTI-ORGANIZAÇÃO</text>
+      <text x="16" y="44" class="card-meta">ROW LEVEL SECURITY FORÇADO</text>
+      <text x="16" y="68" class="card-desc">Segregação nativa: app.organization_id define o tenant ativo.</text>
+      <text x="16" y="86" class="card-desc">Papel do aplicativo: prospeccao_app sem privilégio de DELETE.</text>
+      <text x="16" y="104" class="card-desc">Chaves compostas: Impossibilita vincular dados entre clientes.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#059669;">Auditoria: Testes automáticos validam que um tenant não vê o outro.</text>
+    </g>
+
+    <!-- Card 3.3: LGPD Permanente -->
+    <g transform="translate(20, 420)">
+      <rect x="0" y="0" width="325" height="155" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">GATILHOS IMUTÁVEIS</text>
+      
+      <text x="16" y="28" class="card-title">GOVERNANÇA LGPD E OPT-OUT</text>
+      <text x="16" y="44" class="card-meta">TABELA GLOBAL DE NÃO CONTATO</text>
+      <text x="16" y="68" class="card-desc">Mecanismo: Bloqueio imediato por CNPJ solicitado pelo titular.</text>
+      <text x="16" y="86" class="card-desc">Imutabilidade: Gatilho no banco impede remoção ou edição do opt-out.</text>
+      <text x="16" y="104" class="card-desc">Saneamento: Ao bloquear, contatos são gravados como BLOQUEADO_LGPD.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#0f172a;">Garantia: Reimportações futuras ignoram automaticamente a empresa.</text>
+    </g>
+
+    <!-- Card 3.4: Cache e Performance -->
+    <g transform="translate(20, 595)">
+      <rect x="0" y="0" width="325" height="185" class="card" />
+      <rect x="205" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="212" y="25" class="badge-sem-ia-text">ALTA VELOCIDADE</text>
+      
+      <text x="16" y="28" class="card-title">CACHE EM MEMÓRIA &amp; CTES</text>
+      <text x="16" y="44" class="card-meta">DESEMPENHO ENTERPRISE</text>
+      <text x="16" y="68" class="card-desc">Latência de resumo: 1,8 milissegundo (aceleração de 3.300x).</text>
+      <text x="16" y="86" class="card-desc">Pré-aquecimento: Boot do servidor carrega os 79 municípios.</text>
+      <text x="16" y="104" class="card-desc">Consultas otimizadas: CTEs evitam varreduras repetidas em disco.</text>
+      <text x="16" y="122" class="card-desc">Invalidação reativa: Mutações no funil atualizam o cache na hora.</text>
+      <text x="16" y="150" class="card-desc" style="font-weight:700; fill:#2563eb;">Resultado prático: Transição instantânea entre mapa e dashboard.</text>
+    </g>
+  </g>
+
+  <!-- ==================== COLUNA 4: MOTOR REVOPS E INTERFACE ==================== -->
+  <g transform="translate(1210, 160)">
+    <rect x="0" y="0" width="350" height="810" class="box" />
+    <path d="M 0 0 L 350 0 L 350 50 L 0 50 Z" fill="#f1f5f9" rx="8" />
+    <text x="20" y="32" class="col-header">4. MOTOR REVOPS &amp; ACIONAMENTO</text>
+    <text x="20" y="44" class="col-sub">Geração de pipeline para o time comercial</text>
+
+    <!-- Card 4.1: Score B2B -->
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="310" height="155" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">100% DETERMINÍSTICO</text>
+      
+      <text x="16" y="28" class="card-title">MOTOR DE SCORING B2B (0-100)</text>
+      <text x="16" y="44" class="card-meta">PRIORIZAÇÃO OBJETIVA DE CONTAS</text>
+      <text x="16" y="68" class="card-desc">+30 pts: Porte DEMAIS (médio/grande).</text>
+      <text x="16" y="86" class="card-desc">+20 pts: Sinais de ERP legado ou portal de RH confirmado.</text>
+      <text x="16" y="104" class="card-desc">+15 pts: Contratos públicos ativos no PNCP.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#059669;">Classificação: Tier A (80+), Tier B (60-79), Tier C (40-59).</text>
+    </g>
+
+    <!-- Card 4.2: Matriz Setorial -->
+    <g transform="translate(20, 245)">
+      <rect x="0" y="0" width="310" height="155" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">100% REGRAS CNAE</text>
+      
+      <text x="16" y="28" class="card-title">DIAGNÓSTICO DOS 6 MACRO-SETORES</text>
+      <text x="16" y="44" class="card-meta">DORES ESPECÍFICAS DE MS</text>
+      <text x="16" y="68" class="card-desc">1. Agronegócio &amp; Bioenergia: Rastreio de safra e manutenção.</text>
+      <text x="16" y="86" class="card-desc">2. Indústria &amp; Energia: Chão de fábrica e conformidade fiscal.</text>
+      <text x="16" y="104" class="card-desc">3. Logística &amp; Rota Bioceânica: Fretes e gestão de frota.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#2563eb;">Outros: Construção, Atacado Distribuidor e Serviços Corporativos.</text>
+    </g>
+
+    <!-- Card 4.3: Mensagem Consultiva (IA) -->
+    <g transform="translate(20, 420)">
+      <rect x="0" y="0" width="310" height="155" class="card" style="stroke:#8b5cf6; fill:#fdfcff;" />
+      <rect x="190" y="12" width="108" height="20" class="badge-com-ia" />
+      <text x="202" y="25" class="badge-com-ia-text">ASSISTIDO POR IA</text>
+      
+      <text x="16" y="28" class="card-title" style="fill:#6d28d9;">MENSAGEM CONSULTIVA WHATSAPP</text>
+      <text x="16" y="44" class="card-meta" style="fill:#7c3aed;">DISCURSO DE VENDA PERSONALIZADO</text>
+      <text x="16" y="68" class="card-desc">Papel da IA: Redação do discurso consultivo sem frieza de robô.</text>
+      <text x="16" y="86" class="card-desc">Contexto alimentado: Cidade de MS, macro-setor e porte real.</text>
+      <text x="16" y="104" class="card-desc">Dor abordada: Eliminação de planilhas paralelas e integração.</text>
+      <text x="16" y="130" class="card-desc" style="font-weight:700; fill:#6d28d9;">Uso: Um clique para abrir no WhatsApp com o texto preenchido.</text>
+    </g>
+
+    <!-- Card 4.4: Validação Física e Exportação -->
+    <g transform="translate(20, 595)">
+      <rect x="0" y="0" width="310" height="185" class="card" />
+      <rect x="190" y="12" width="108" height="20" class="badge-sem-ia" />
+      <text x="197" y="25" class="badge-sem-ia-text">100% DETERMINÍSTICO</text>
+      
+      <text x="16" y="28" class="card-title">VALIDAÇÃO FÍSICA &amp; CRM</text>
+      <text x="16" y="44" class="card-meta">GOOGLE MAPS E EXPORTAÇÃO CSV</text>
+      <text x="16" y="68" class="card-desc">Google Maps: Busca cadastral e reputação pública em 1 clique.</text>
+      <text x="16" y="86" class="card-desc">Street View: Prova visual da fachada física e porte da sede.</text>
+      <text x="16" y="104" class="card-desc">Exportação CSV: Download de até 5.000 leads com delimitador (;).</text>
+      <text x="16" y="122" class="card-desc">Compatibilidade: Abre direto no Excel PT-BR sem quebra de acento.</text>
+      <text x="16" y="150" class="card-desc" style="font-weight:700; fill:#059669;">Pronto para CRM: Alimenta Salesforce, HubSpot ou Pipedrive.</text>
+    </g>
+  </g>
+
+  <!-- Linhas de Conexão Horizontal de Fluxo -->
+  <line x1="390" y1="240" x2="420" y2="240" class="flow-arrow-solid" />
+  <line x1="390" y1="410" x2="420" y2="410" class="flow-arrow-solid" />
+  <line x1="390" y1="580" x2="420" y2="580" class="flow-arrow-solid" />
+  <line x1="390" y1="760" x2="420" y2="760" class="flow-arrow-solid" />
+
+  <line x1="785" y1="240" x2="815" y2="240" class="flow-arrow-solid" />
+  <line x1="785" y1="410" x2="815" y2="410" class="flow-arrow-solid" />
+  <line x1="785" y1="580" x2="815" y2="580" class="flow-arrow-solid" />
+  <line x1="785" y1="760" x2="815" y2="760" class="flow-arrow-solid" />
+
+  <line x1="1180" y1="240" x2="1210" y2="240" class="flow-arrow-solid" />
+  <line x1="1180" y1="410" x2="1210" y2="410" class="flow-arrow-solid" />
+  <line x1="1180" y1="580" x2="1210" y2="580" class="flow-arrow-solid" />
+  <line x1="1180" y1="760" x2="1210" y2="760" class="flow-arrow-solid" />
+</svg>
