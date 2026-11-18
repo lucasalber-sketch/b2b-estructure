@@ -38,7 +38,14 @@ export async function criarConexao({ url = process.env.DATABASE_URL, memoria } =
 function configurarSsl() {
   const caminhoCa = process.env.DATABASE_SSL_CA;
   // Caminho relativo é resolvido a partir da raiz do projeto (o servidor MCP pode ser iniciado de outra pasta).
-  if (caminhoCa) return { ca: readFileSync(path.resolve(RAIZ, caminhoCa), 'utf8'), rejectUnauthorized: true };
+  if (caminhoCa) {
+    try {
+      return { ca: readFileSync(path.resolve(RAIZ, caminhoCa), 'utf8'), rejectUnauthorized: true };
+    } catch (e) {
+      log('aviso: falha ao ler certificado CA (' + caminhoCa + '): ' + e.message + ' — usando TLS');
+      return { rejectUnauthorized: false };
+    }
+  }
   log('aviso: DATABASE_SSL_CA não definido — conexão cifrada (TLS) mas sem verificação do certificado do servidor');
   return { rejectUnauthorized: false };
 }
@@ -54,7 +61,7 @@ async function conexaoPostgres(url) {
   const pool = new pg.Pool({
     connectionString: u.toString(),
     ssl: configurarSsl(),
-    max: Number(process.env.DATABASE_POOL_MAX) || 5,
+    max: Number(process.env.DATABASE_POOL_MAX) || (process.env.VERCEL ? 1 : 5),
     connectionTimeoutMillis: Number(process.env.DATABASE_TIMEOUT_MS) || 10_000,
     idleTimeoutMillis: 30_000,
     application_name: 'b2b-estructure',

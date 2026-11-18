@@ -113,4 +113,42 @@ describe('Etapa 4 — Qualificador RevOps & Servidor Web/API', () => {
     const resAtualizado = await (await fetch(`${baseUrl}/api/resumo?refresh=1`)).json();
     assert.equal(resAtualizado.kpis.total_empresas, 1);
   });
+
+  test('MODO_DEMO protege contra mutações de dados', async () => {
+    process.env.MODO_DEMO = '1';
+    try {
+      const r = await (
+        await fetch(`${baseUrl}/api/empresas/${CNPJ_AGRO}/bloquear`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ motivo: 'teste demo' }),
+        })
+      ).json();
+      assert.equal(r.sucesso, true);
+      assert.ok(r.aviso_demo.includes('Modo Demonstração'));
+
+      // Verifica que no banco real a empresa continua viva (não foi bloqueada de verdade)
+      const empAindaExiste = await repo.buscarPorCnpj(CNPJ_AGRO);
+      assert.ok(empAindaExiste, 'A empresa não deve ser deletada/bloqueada em modo demo');
+    } finally {
+      delete process.env.MODO_DEMO;
+    }
+  });
+
+  test('DEMO_SENHA exige autenticação HTTP Basic quando configurada', async () => {
+    process.env.DEMO_SENHA = 'teste-segredo-123';
+    try {
+      const negado = await fetch(`${baseUrl}/api/resumo`);
+      assert.equal(negado.status, 401);
+
+      const autorizado = await fetch(`${baseUrl}/api/resumo`, {
+        headers: {
+          Authorization: 'Basic ' + Buffer.from('demo:teste-segredo-123').toString('base64'),
+        },
+      });
+      assert.equal(autorizado.status, 200);
+    } finally {
+      delete process.env.DEMO_SENHA;
+    }
+  });
 });

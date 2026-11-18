@@ -18,7 +18,10 @@ import {
   qualificarEmpresa,
 } from '../servicos/qualificador.js';
 
-const DIR_PUBLIC = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
+const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const DIR_PUBLIC = existsSync(path.join(RAIZ, 'public'))
+  ? path.join(RAIZ, 'public')
+  : path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -562,6 +565,18 @@ export function criarServidorWeb({ conexao, organizationId }) {
       const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
       const p = urlObj.pathname;
 
+      if (process.env.DEMO_SENHA && p.startsWith('/api/')) {
+        const auth = req.headers['authorization'] || '';
+        const esperado = 'Basic ' + Buffer.from(`demo:${process.env.DEMO_SENHA}`).toString('base64');
+        if (auth !== esperado) {
+          res.writeHead(401, {
+            'WWW-Authenticate': 'Basic realm="Acesso Restrito - Demonstracao b2b-estructure"',
+            'Content-Type': 'application/json; charset=utf-8',
+          });
+          return res.end(JSON.stringify({ erro: 'Acesso restrito. Forneça o usuário (demo) e a senha da demonstração.' }));
+        }
+      }
+
       if (req.method === 'GET' && p === '/api/resumo') {
         const forcar = urlObj.searchParams.get('refresh') === '1';
         return responderJson(res, 200, await obterResumo({ forcar }));
@@ -589,12 +604,27 @@ export function criarServidorWeb({ conexao, organizationId }) {
         }
         if (req.method === 'POST' && acao === 'enriquecer') {
           const body = await lerJsonBody(req);
+          if (process.env.MODO_DEMO === '1' || process.env.DEMO_MODE === 'true') {
+            const dossie = await obterDossieEmpresa(cnpjAlvo);
+            return responderJson(res, 200, {
+              ...dossie,
+              aviso_demo: 'Modo Demonstração: enriquecimento simulado sem consumir cota de APIs externas.',
+            });
+          }
           const r = await enriquecerEmpresaIndividual(cnpjAlvo, body);
           invalidarCacheResumo();
           return responderJson(res, 200, r);
         }
         if (req.method === 'POST' && acao === 'funil') {
           const body = await lerJsonBody(req);
+          if (process.env.MODO_DEMO === '1' || process.env.DEMO_MODE === 'true') {
+            const dossie = await obterDossieEmpresa(cnpjAlvo);
+            return responderJson(res, 200, {
+              ...dossie,
+              etapa_funil: body.etapa,
+              aviso_demo: `Modo Demonstração: etapa simulada (${body.etapa?.toUpperCase()}) sem alterar o banco de dados.`,
+            });
+          }
           await repo.moverFunil({
             cnpj: cnpjAlvo,
             etapa: body.etapa,
@@ -606,6 +636,14 @@ export function criarServidorWeb({ conexao, organizationId }) {
         }
         if (req.method === 'POST' && acao === 'bloquear') {
           const body = await lerJsonBody(req);
+          if (process.env.MODO_DEMO === '1' || process.env.DEMO_MODE === 'true') {
+            return responderJson(res, 200, {
+              sucesso: true,
+              bloqueado: true,
+              cnpj: cnpjAlvo,
+              aviso_demo: 'Modo Demonstração: bloqueio LGPD simulado sem alterar a lista permanente.',
+            });
+          }
           const r = await repo.bloquearContato({
             cnpj: cnpjAlvo,
             motivo: body.motivo || 'solicitação de opt-out LGPD via painel',
