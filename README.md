@@ -95,7 +95,7 @@ O repositório inclui diagramas vetoriais completos na raiz:
 
 ### Passo 1: Clonar o Repositório e Instalar Dependências
 ```bash
-git clone https://github.com/Nunalber-last/b2b-estructure.git
+git clone https://github.com/lucasalber-sketch/b2b-estructure.git
 cd b2b-estructure
 npm install
 ```
