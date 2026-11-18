@@ -30,3 +30,6 @@ scratch/
 .vercel/
 dist/
 build/
+
+.vercel
+.env*
