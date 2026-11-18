@@ -1,9 +1,32 @@
+# Dependências
 node_modules/
+
+# Variáveis de ambiente e segredos (apenas .env.example vai para o Git)
 .env
-data/cache/
-data/receita/
+.env*.local
+.env.production
+.env.staging
+
+# Dados brutos da Receita Federal, caches e dumps (evita subir gigabytes ao GitHub)
+data/*
+!data/.gitkeep
+
+# Arquivos temporários e dumps
+*.log
 *.tmp
+*.zip
+*.ndjson
+
+# Arquivos de sistema operacional
 .DS_Store
-data/*.log
+Thumbs.db
+desktop.ini
+
+# Ferramentas locais e rascunhos de sessão
 .claude/
 scratch/
+
+# Vercel e builds
+.vercel/
+dist/
+build/
