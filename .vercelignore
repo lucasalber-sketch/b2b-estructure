@@ -1,0 +1,22 @@
+# Ignorar dados pesados brutos e temporários
+data/
+data/**
+*.zip
+*.ndjson
+*.tmp
+*.log
+
+# Dependências locais e testes
+node_modules/
+test/
+scratch/
+.agents/
+.claude/
+
+# Arquivos de ambiente e segredos locais
+.env
+.env*
+!.env.example
+
+# Git
+.git/

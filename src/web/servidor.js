@@ -73,6 +73,11 @@ async function lerJsonBody(req) {
   return texto ? JSON.parse(texto) : {};
 }
 
+const modoDemoAtivo = () => {
+  const v = String(process.env.MODO_DEMO || process.env.DEMO_MODE || '').trim().replace(/^["']|["']$/g, '');
+  return v === '1' || v.toLowerCase() === 'true';
+};
+
 export function criarServidorWeb({ conexao, organizationId }) {
   const repo = criarRepositorio(conexao, { organizationId });
 
@@ -604,7 +609,7 @@ export function criarServidorWeb({ conexao, organizationId }) {
         }
         if (req.method === 'POST' && acao === 'enriquecer') {
           const body = await lerJsonBody(req);
-          if (process.env.MODO_DEMO === '1' || process.env.DEMO_MODE === 'true') {
+          if (modoDemoAtivo()) {
             const dossie = await obterDossieEmpresa(cnpjAlvo);
             return responderJson(res, 200, {
               ...dossie,
@@ -617,7 +622,7 @@ export function criarServidorWeb({ conexao, organizationId }) {
         }
         if (req.method === 'POST' && acao === 'funil') {
           const body = await lerJsonBody(req);
-          if (process.env.MODO_DEMO === '1' || process.env.DEMO_MODE === 'true') {
+          if (modoDemoAtivo()) {
             const dossie = await obterDossieEmpresa(cnpjAlvo);
             return responderJson(res, 200, {
               ...dossie,
@@ -636,7 +641,7 @@ export function criarServidorWeb({ conexao, organizationId }) {
         }
         if (req.method === 'POST' && acao === 'bloquear') {
           const body = await lerJsonBody(req);
-          if (process.env.MODO_DEMO === '1' || process.env.DEMO_MODE === 'true') {
+          if (modoDemoAtivo()) {
             return responderJson(res, 200, {
               sucesso: true,
               bloqueado: true,
